@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
-
-class CardExample extends StatelessWidget {
-  const CardExample({
-    super.key,
-    required this.progressValue,
-    required this.numberPercentage,
-  });
-
+class CardExample extends StatefulWidget {
   final double progressValue;
   final int numberPercentage;
 
-  final String assetName = 'images/iconCode.svg';
+  const CardExample({
+    Key? key,
+    required this.progressValue,
+    required this.numberPercentage,
+  }) : super(key: key);
 
-  // Color myCustomColor = Color(0xFFFF6C37);
+  @override
+  _CardExampleState createState() => _CardExampleState();
+}
+
+class _CardExampleState extends State<CardExample> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class CardExample extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0),
                     // Adjust the radius as needed
                     child: LinearProgressIndicator(
-                      value: progressValue,
+                      value: widget.progressValue,
                       minHeight: 10,
                       backgroundColor: Colors.grey[300],
                       valueColor:
@@ -65,7 +67,7 @@ class CardExample extends StatelessWidget {
                         "Score: ",
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      Text(numberPercentage.toString(),
+                      Text(widget.numberPercentage.toString(),
                           style: const TextStyle(fontWeight: FontWeight.bold)),
                       Text("/100",
                           style: const TextStyle(fontWeight: FontWeight.bold))
@@ -101,18 +103,3 @@ class CardExample extends StatelessWidget {
   }
 }
 
-class ImageSection extends StatelessWidget {
-  const ImageSection({super.key, required this.image});
-
-  final String image;
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      image,
-      width: 600,
-      height: 240,
-      fit: BoxFit.cover,
-    );
-  }
-}

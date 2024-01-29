@@ -1,6 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:preform/pages/interview.dart';
+import 'package:preform/pages/login.dart';
+import 'package:preform/pages/splashscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,15 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        color: Colors.white,
-        title: 'Preform',
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          textTheme: GoogleFonts.dmSansTextTheme(
-            Theme.of(context).textTheme,
-          ),
-        ),
+      initialRoute: '/',
         debugShowCheckedModeBanner: false,
-        home: const Interview());
+        routes: {
+          '/': (context) => LoginForm(),
+        }
+    );
   }
 }

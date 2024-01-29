@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:preform/widgets/navbar.dart';
 
 class Interview extends StatefulWidget {
   const Interview({Key? key}) : super(key: key);
@@ -188,22 +189,18 @@ class _InterviewState extends State<Interview> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListView.builder(
-                      padding: const EdgeInsets.only(
-                          top: 0, bottom: 0), // Adjust top and bottom padding
+                      padding: const EdgeInsets.only(top: 0, bottom: 0),
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: items.length,
                       itemBuilder: (context, index) {
                         return ListTile(
                           contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 14,
-                              vertical:
-                                  1), // Remove horizontal and vertical padding
+                              horizontal: 14, vertical: 1),
                           title: Text(items[index]),
                           dense: true, // Make ListTile dense
-                          visualDensity: const VisualDensity(
-                              horizontal: 0,
-                              vertical: -4), // Adjust vertical density
+                          visualDensity:
+                              const VisualDensity(horizontal: 0, vertical: -4),
                           trailing: Checkbox(
                             value: checkboxValues[index],
                             onChanged: (bool? value) {
@@ -215,6 +212,39 @@ class _InterviewState extends State<Interview> {
                         );
                       },
                     ),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 60, right: 60),
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(double.infinity, 30),
+                            backgroundColor: const Color(0xFFC4084F),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.add,
+                                size: 20,
+                              ),
+                              Text(
+                                'Add your own requirement',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -284,14 +314,14 @@ class _InterviewState extends State<Interview> {
                 decoration: InputDecoration(
                   labelText: 'Add your work experience...',
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Color(0xFFC4084F),
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(8.0)),
                   enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xFFC4084F), width: 2.0),
+                      borderSide: const BorderSide(
+                          color: Color(0xFFC4084F), width: 2.0),
                       borderRadius: BorderRadius.circular(8.0)),
                 ),
               ),

@@ -7,12 +7,12 @@ void main() {
 }
 */
 
-class JobCard extends StatefulWidget {
+class AllInterviewCard extends StatefulWidget {
   @override
-  _JobCardState createState() => _JobCardState();
+  _AllInterviewCardState createState() => _AllInterviewCardState();
 }
 
-class _JobCardState extends State<JobCard> {
+class _AllInterviewCardState extends State<AllInterviewCard> {
   double progressValue = 0.5; // Example progress value
 
   @override

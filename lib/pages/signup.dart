@@ -13,7 +13,6 @@ class SignUpForm extends StatefulWidget {
 }
 
 class SignUpFormState extends State<SignUpForm> {
-  @override
   final FirebaseAuthService _auth = FirebaseAuthService();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
@@ -24,11 +23,12 @@ class SignUpFormState extends State<SignUpForm> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Center(
                     child: Column(
@@ -36,17 +36,18 @@ class SignUpFormState extends State<SignUpForm> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                       Padding(
-                          padding: EdgeInsets.all(25.0),
+                          padding: const EdgeInsets.all(25.0),
                           child: Container(
                               decoration: BoxDecoration(
-                                  color: Color.fromRGBO(255, 255, 255, 0.6),
+                                  color:
+                                      const Color.fromRGBO(255, 255, 255, 0.6),
                                   borderRadius: BorderRadius.circular(16.0),
                                   border: Border.all(
-                                    color: Color(0xFFC4084F),
+                                    color: const Color(0xFFC4084F),
                                     width: 2.0,
                                   )),
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     top: 60.0,
                                     bottom: 60.0,
                                     left: 20.0,
@@ -55,22 +56,22 @@ class SignUpFormState extends State<SignUpForm> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "Sign Up",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 26.0,
                                             color: Color(0xFFFF6C37)),
                                       ),
-                                      SizedBox(height: 10),
-                                      Text(
+                                      const SizedBox(height: 10),
+                                      const Text(
                                         "Ready to kickstart your career?",
                                         style: TextStyle(
                                             fontWeight: FontWeight.normal,
                                             fontSize: 16.0,
                                             color: Colors.black),
                                       ),
-                                      SizedBox(height: 30),
+                                      const SizedBox(height: 30),
                                       Form(
                                         key: _formKey,
                                         child: Column(children: [
@@ -78,12 +79,12 @@ class SignUpFormState extends State<SignUpForm> {
                                             controller: _emailController,
                                             decoration: InputDecoration(
                                               contentPadding:
-                                                  EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                       horizontal: 15.0,
                                                       vertical: 12.0),
                                               hintText:
                                                   'Enter your email address',
-                                              hintStyle: TextStyle(
+                                              hintStyle: const TextStyle(
                                                 fontWeight: FontWeight.normal,
                                                 fontSize: 14.0,
                                                 color: Colors.grey,
@@ -91,12 +92,12 @@ class SignUpFormState extends State<SignUpForm> {
                                               border: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Color(0xFFFF6C37),
                                                   width: 1.0,
                                                 ),
                                               ),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.email,
                                                 color: Colors.black,
                                               ),
@@ -109,17 +110,17 @@ class SignUpFormState extends State<SignUpForm> {
                                               return null;
                                             },
                                           ),
-                                          SizedBox(height: 25),
+                                          const SizedBox(height: 25),
                                           TextFormField(
                                             obscureText: _obscurePassword,
                                             controller: _passwordController,
                                             decoration: InputDecoration(
                                               contentPadding:
-                                                  EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                       horizontal: 15.0,
                                                       vertical: 12.0),
                                               hintText: 'Enter your password',
-                                              hintStyle: TextStyle(
+                                              hintStyle: const TextStyle(
                                                 fontWeight: FontWeight.normal,
                                                 fontSize: 14.0,
                                                 color: Colors.grey,
@@ -127,12 +128,12 @@ class SignUpFormState extends State<SignUpForm> {
                                               border: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Color(0xFFFF6C37),
                                                   width: 1.0,
                                                 ),
                                               ),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.password,
                                                 color: Colors.black,
                                               ),
@@ -159,7 +160,7 @@ class SignUpFormState extends State<SignUpForm> {
                                               return null;
                                             },
                                           ),
-                                          SizedBox(height: 20),
+                                          const SizedBox(height: 20),
                                           TextFormField(
                                             controller:
                                                 _confirmpasswordController,
@@ -167,12 +168,12 @@ class SignUpFormState extends State<SignUpForm> {
                                                 _obscureConfirmPassword,
                                             decoration: InputDecoration(
                                               contentPadding:
-                                                  EdgeInsets.symmetric(
+                                                  const EdgeInsets.symmetric(
                                                       horizontal: 15.0,
                                                       vertical: 12.0),
                                               hintText:
                                                   'Enter your password again',
-                                              hintStyle: TextStyle(
+                                              hintStyle: const TextStyle(
                                                 fontWeight: FontWeight.normal,
                                                 fontSize: 14.0,
                                                 color: Colors.grey,
@@ -194,12 +195,12 @@ class SignUpFormState extends State<SignUpForm> {
                                               border: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(10.0),
-                                                borderSide: BorderSide(
+                                                borderSide: const BorderSide(
                                                   color: Color(0xFFFF6C37),
                                                   width: 1.0,
                                                 ),
                                               ),
-                                              prefixIcon: Icon(
+                                              prefixIcon: const Icon(
                                                 Icons.password,
                                                 color: Colors.black,
                                               ),
@@ -215,10 +216,10 @@ class SignUpFormState extends State<SignUpForm> {
                                               return null;
                                             },
                                           ),
-                                          SizedBox(height: 25),
+                                          const SizedBox(height: 25),
                                           Row(
                                             children: [
-                                              Text(
+                                              const Text(
                                                 "Already have an account? ",
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.normal,
@@ -231,7 +232,7 @@ class SignUpFormState extends State<SignUpForm> {
                                                   Navigator.pushNamed(
                                                       context, '/login');
                                                 },
-                                                child: Text(
+                                                child: const Text(
                                                   "Login here!",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
@@ -244,8 +245,8 @@ class SignUpFormState extends State<SignUpForm> {
                                               )
                                             ],
                                           ),
-                                          SizedBox(height: 16),
-                                          Container(
+                                          const SizedBox(height: 16),
+                                          SizedBox(
                                             width: double.infinity,
                                             child: ElevatedButton(
                                               onPressed: () {
@@ -253,17 +254,18 @@ class SignUpFormState extends State<SignUpForm> {
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
-                                                    Color(0xFFFF6C37),
+                                                    const Color(0xFFFF6C37),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10.0),
                                                 ),
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 10.0),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 10.0),
                                                 elevation: 0,
                                               ),
-                                              child: Text(
+                                              child: const Text(
                                                 'Sign Up',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,

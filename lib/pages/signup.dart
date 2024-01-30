@@ -1,25 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:preform/user_auth/firebase_auth_services.dart';
-import 'package:preform/user_auth/user_provider.dart';
-import 'package:provider/provider.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
 
   @override
-  LoginFormState createState() {
-    return LoginFormState();
+  SignUpFormState createState() {
+    return SignUpFormState();
   }
 }
 
-class LoginFormState extends State<LoginForm> {
+class SignUpFormState extends State<SignUpForm> {
   @override
   final FirebaseAuthService _auth = FirebaseAuthService();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmpasswordController =
+      TextEditingController();
+
   bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,19 +56,17 @@ class LoginFormState extends State<LoginForm> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Login",
+                                        "Sign Up",
                                         style: TextStyle(
-                                            fontFamily: 'DMSans',
-                                            fontWeight: FontWeight.w600,
+                                            fontWeight: FontWeight.bold,
                                             fontSize: 26.0,
                                             color: Color(0xFFFF6C37)),
                                       ),
                                       SizedBox(height: 10),
                                       Text(
-                                        "Welcome back to Preform!",
+                                        "Ready to kickstart your career?",
                                         style: TextStyle(
-                                            fontFamily: 'DMSans',
-                                            fontWeight: FontWeight.w400,
+                                            fontWeight: FontWeight.normal,
                                             fontSize: 16.0,
                                             color: Colors.black),
                                       ),
@@ -83,8 +84,7 @@ class LoginFormState extends State<LoginForm> {
                                               hintText:
                                                   'Enter your email address',
                                               hintStyle: TextStyle(
-                                                fontFamily: 'DMSans',
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.normal,
                                                 fontSize: 14.0,
                                                 color: Colors.grey,
                                               ),
@@ -111,8 +111,8 @@ class LoginFormState extends State<LoginForm> {
                                           ),
                                           SizedBox(height: 25),
                                           TextFormField(
-                                            controller: _passwordController,
                                             obscureText: _obscurePassword,
+                                            controller: _passwordController,
                                             decoration: InputDecoration(
                                               contentPadding:
                                                   EdgeInsets.symmetric(
@@ -120,8 +120,7 @@ class LoginFormState extends State<LoginForm> {
                                                       vertical: 12.0),
                                               hintText: 'Enter your password',
                                               hintStyle: TextStyle(
-                                                fontFamily: 'DMSans',
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.normal,
                                                 fontSize: 14.0,
                                                 color: Colors.grey,
                                               ),
@@ -155,19 +154,74 @@ class LoginFormState extends State<LoginForm> {
                                             validator: (value) {
                                               if (value == null ||
                                                   value.isEmpty) {
-                                                return 'Please enter your email';
+                                                return 'Please enter your password';
                                               }
                                               return null;
                                             },
                                           ),
                                           SizedBox(height: 20),
+                                          TextFormField(
+                                            controller:
+                                                _confirmpasswordController,
+                                            obscureText:
+                                                _obscureConfirmPassword,
+                                            decoration: InputDecoration(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                      horizontal: 15.0,
+                                                      vertical: 12.0),
+                                              hintText:
+                                                  'Enter your password again',
+                                              hintStyle: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 14.0,
+                                                color: Colors.grey,
+                                              ),
+                                              suffixIcon: IconButton(
+                                                icon: Icon(
+                                                  _obscureConfirmPassword
+                                                      ? Icons.visibility
+                                                      : Icons.visibility_off,
+                                                  color: Colors.grey,
+                                                ),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    _obscureConfirmPassword =
+                                                        !_obscureConfirmPassword;
+                                                  });
+                                                },
+                                              ),
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                borderSide: BorderSide(
+                                                  color: Color(0xFFFF6C37),
+                                                  width: 1.0,
+                                                ),
+                                              ),
+                                              prefixIcon: Icon(
+                                                Icons.password,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                return 'Please enter your password';
+                                              } else if (value !=
+                                                  _passwordController.text) {
+                                                return 'Passwords do not match';
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                          SizedBox(height: 25),
                                           Row(
                                             children: [
                                               Text(
-                                                "New to Preform? ",
+                                                "Already have an account? ",
                                                 style: TextStyle(
-                                                  fontFamily: 'DMSans',
-                                                  fontWeight: FontWeight.w400,
+                                                  fontWeight: FontWeight.normal,
                                                   fontSize: 14.0,
                                                   color: Colors.grey,
                                                 ),
@@ -175,10 +229,10 @@ class LoginFormState extends State<LoginForm> {
                                               GestureDetector(
                                                 onTap: () {
                                                   Navigator.pushNamed(
-                                                      context, '/signup');
+                                                      context, '/login');
                                                 },
                                                 child: Text(
-                                                  "Sign up here!",
+                                                  "Login here!",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 14.0,
@@ -195,7 +249,7 @@ class LoginFormState extends State<LoginForm> {
                                             width: double.infinity,
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                _login(context);
+                                                _signUp();
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
@@ -210,10 +264,9 @@ class LoginFormState extends State<LoginForm> {
                                                 elevation: 0,
                                               ),
                                               child: Text(
-                                                'Login',
+                                                'Sign Up',
                                                 style: TextStyle(
-                                                    fontFamily: 'DMSans',
-                                                    fontWeight: FontWeight.w600,
+                                                    fontWeight: FontWeight.bold,
                                                     fontSize: 18.0,
                                                     color: Colors.white),
                                               ),
@@ -226,22 +279,33 @@ class LoginFormState extends State<LoginForm> {
                     ])))));
   }
 
-  void _login(BuildContext context) async {
+  void _signUp() async {
     if (_formKey.currentState!.validate()) {
       String email = _emailController.text;
       String password = _passwordController.text;
-
-      User? user =
-          await _auth.signInWithEmailAndPassword(context, email, password);
-
+      User? user = await _auth.signUpWithEmailAndPassword(email, password);
       if (user != null) {
-        print("User successfully logged in");
-        Provider.of<UserProvider>(context, listen: false)
-            .setUserEmail(user.email);
-        Navigator.pushNamed(context, '/');
+        print("User successfully created");
+        await _addUserDataToRealTimeDB(user.uid, email);
+        Navigator.pushNamed(context, '/login');
       } else {
         print("Error in creating user");
       }
+    }
+  }
+
+  Future<void> _addUserDataToRealTimeDB(String uid, String email) async {
+    try {
+      final DatabaseReference usersRef =
+          FirebaseDatabase.instance.ref().child('Users');
+      await usersRef.child(uid).set({
+        'uid': uid,
+        'email': email,
+      });
+
+      print("User data added to Firebase Realtime Database");
+    } catch (e) {
+      print("Error adding user data to Firebase Realtime Database: $e");
     }
   }
 }

@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
         Tween<double>(begin: 0, end: 1).animate(_animationController);
     _animationController.forward().then((value) {
       Timer(Duration(seconds: 2), () {
-        Navigator.of(context).pushReplacementNamed('/introduction');
+        Navigator.of(context).pushReplacementNamed('/signup');
       });
     });
   }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:preform/widgets/prev_interview_card.dart';
-
 import '../widgets/bottom_navbar.dart';
 
 class Home extends StatefulWidget {
@@ -19,21 +17,17 @@ class _HomeState extends State<Home> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My App'),
       ),
-      body: Center(
-
-      ),
+      body: Center(),
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onItemSelected: _onNavBarTap,
       ),
     );
-
   }
 }

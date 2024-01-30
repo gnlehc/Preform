@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -68,16 +66,16 @@ class _JobCardState extends State<JobCard> {
                       color: Colors.black, // Set the border color
                       width: 2.0, // Set the border width
                     ),
-                    borderRadius: BorderRadius.circular(10), // Set the border radius
+                    borderRadius:
+                        BorderRadius.circular(10), // Set the border radius
                   ),
                   child: LinearProgressIndicator(
                     value: progressValue,
                     backgroundColor: Colors.grey[300],
                     valueColor:
-                    AlwaysStoppedAnimation<Color>(const Color(0xFFFF6C37)),
+                        AlwaysStoppedAnimation<Color>(const Color(0xFFFF6C37)),
                   ),
                 ),
-
                 SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerRight,

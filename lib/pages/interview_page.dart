@@ -1,16 +1,13 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:preform/widgets/navbar.dart';
 
-class Interview extends StatefulWidget {
-  const Interview({Key? key}) : super(key: key);
+class InterviewPage extends StatefulWidget {
+  const InterviewPage({Key? key}) : super(key: key);
 
   @override
-  State<Interview> createState() => _InterviewState();
+  State<InterviewPage> createState() => _InterviewPageState();
 }
 
-class _InterviewState extends State<Interview> {
+class _InterviewPageState extends State<InterviewPage> {
   late String? _chosenValue = 'Software Engineer';
   late String? _industryValue = 'Cyber Security';
   final List<String> items = [
@@ -231,13 +228,14 @@ class _InterviewState extends State<Interview> {
                               Icon(
                                 Icons.add,
                                 size: 20,
+                                color: Colors.white,
                               ),
                               Text(
                                 'Add your own requirement',
                                 style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                ),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                    color: Colors.white),
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -338,13 +336,16 @@ class _InterviewState extends State<Interview> {
                   children: [
                     Text(
                       'Start Now',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
                     Icon(
                       Icons.arrow_forward_ios,
                       size: 20,
+                      color: Colors.white,
                     ),
                   ],
                 ),

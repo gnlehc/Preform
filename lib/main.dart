@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:preform/pages/home.dart';
 import 'package:preform/pages/interview.dart';
 
 void main() {
@@ -22,6 +23,8 @@ class MyApp extends StatelessWidget {
           ),
         ),
         debugShowCheckedModeBanner: false,
-        home: const Interview());
+
+        // nanti ganti lagi
+        home: const Home());
   }
 }

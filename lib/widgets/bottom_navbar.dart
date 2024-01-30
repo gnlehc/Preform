@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+void main() {
+  runApp(MaterialApp(home: BottomNavBar(selectedIndex: 0, onItemSelected: (int index) {  },)));
+}
 
 class BottomNavBar extends StatefulWidget {
   final int selectedIndex;

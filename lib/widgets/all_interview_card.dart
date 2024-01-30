@@ -68,16 +68,16 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                       color: Colors.black, // Set the border color
                       width: 2.0, // Set the border width
                     ),
-                    borderRadius: BorderRadius.circular(10), // Set the border radius
+                    borderRadius:
+                        BorderRadius.circular(10), // Set the border radius
                   ),
                   child: LinearProgressIndicator(
                     value: progressValue,
                     backgroundColor: Colors.grey[300],
                     valueColor:
-                    AlwaysStoppedAnimation<Color>(const Color(0xFFFF6C37)),
+                        AlwaysStoppedAnimation<Color>(const Color(0xFFFF6C37)),
                   ),
                 ),
-
                 SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerRight,

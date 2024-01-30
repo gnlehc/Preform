@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813117776614",
+    "project_id": "preform-f68e6",
+    "storage_bucket": "preform-f68e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813117776614:android:a3b5caa0ffb0cf29289127",
+        "android_client_info": {
+          "package_name": "com.example.preform"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuLYwERH4GukswbWv9NInHYdlcfoc4Q1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

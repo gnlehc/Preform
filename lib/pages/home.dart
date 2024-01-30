@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text('My App'),
       ),
-      body: Center(),
+      body: const Center(),
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onItemSelected: _onNavBarTap,

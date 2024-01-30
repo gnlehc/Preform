@@ -1,11 +1,7 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:preform/pages/interview.dart';
-import 'package:preform/pages/login.dart';
-import 'package:preform/pages/signup.dart';
-import 'package:preform/pages/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -35,15 +31,40 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(
-          fontFamily: 'DMSans',
+      home: MyHomePage(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        textTheme: GoogleFonts.dmSansTextTheme(
+          Theme.of(context).textTheme,
         ),
-        initialRoute: '/',
-        debugShowCheckedModeBanner: false,
-        routes: {
-          '/': (context) => SplashScreen(),
-          '/login': (context) => LoginForm(),
-          '/signup': (context) => SignUpForm(),
-        });
+      ),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _currentIndex = 0;
+
+  void _onNavbarItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: const Interview(),
+      bottomNavigationBar: Navbar(
+        currentIndex: _currentIndex,
+        onTap: _onNavbarItemTapped,
+      ),
+    );
   }
 }

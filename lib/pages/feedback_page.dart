@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:preform/widgets/percentage_circle.dart';
 
 class FeedbackPage extends StatefulWidget {
-  const FeedbackPage({Key? key});
+  const FeedbackPage({super.key});
 
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();

@@ -121,7 +121,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/ # Assuming all your images are in this directory.
+    - lib/images/ # Assuming all your images are in this directory.
     - assets/img/logopreform.png # Only needed if this path is different from the above.
+
 
   # Include custom fonts here (if any).

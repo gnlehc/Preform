@@ -55,17 +55,16 @@ class LoginFormState extends State<LoginForm> {
                                       const Text(
                                         "Login",
                                         style: TextStyle(
-                                            fontFamily: 'DMSans',
-                                            fontWeight: FontWeight.w600,
+                                            fontWeight: FontWeight.bold,
                                             fontSize: 26.0,
                                             color: Color(0xFFFF6C37)),
                                       ),
+                                      const SearchBar(),
                                       const SizedBox(height: 10),
                                       const Text(
                                         "Welcome back to Preform!",
                                         style: TextStyle(
-                                            fontFamily: 'DMSans',
-                                            fontWeight: FontWeight.w400,
+                                            fontWeight: FontWeight.normal,
                                             fontSize: 16.0,
                                             color: Colors.black),
                                       ),
@@ -83,8 +82,7 @@ class LoginFormState extends State<LoginForm> {
                                               hintText:
                                                   'Enter your email address',
                                               hintStyle: const TextStyle(
-                                                fontFamily: 'DMSans',
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.normal,
                                                 fontSize: 14.0,
                                                 color: Colors.grey,
                                               ),
@@ -120,8 +118,7 @@ class LoginFormState extends State<LoginForm> {
                                                       vertical: 12.0),
                                               hintText: 'Enter your password',
                                               hintStyle: const TextStyle(
-                                                fontFamily: 'DMSans',
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.bold,
                                                 fontSize: 14.0,
                                                 color: Colors.grey,
                                               ),
@@ -166,8 +163,7 @@ class LoginFormState extends State<LoginForm> {
                                               const Text(
                                                 "New to Preform? ",
                                                 style: TextStyle(
-                                                  fontFamily: 'DMSans',
-                                                  fontWeight: FontWeight.w400,
+                                                  fontWeight: FontWeight.normal,
                                                   fontSize: 14.0,
                                                   color: Colors.grey,
                                                 ),
@@ -213,8 +209,7 @@ class LoginFormState extends State<LoginForm> {
                                               child: const Text(
                                                 'Login',
                                                 style: TextStyle(
-                                                    fontFamily: 'DMSans',
-                                                    fontWeight: FontWeight.w600,
+                                                    fontWeight: FontWeight.bold,
                                                     fontSize: 18.0,
                                                     color: Colors.white),
                                               ),

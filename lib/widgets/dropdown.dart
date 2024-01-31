@@ -14,40 +14,41 @@ class CustomExpansionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.orange, width: 2.0), // Border color and width
+        side: const BorderSide(color: Color(0xFFFF6C37), width: 2.0),
         borderRadius: BorderRadius.circular(12),
       ),
-      color: Colors.orange, // Card background color
-      elevation: 0, // Removes shadow to maintain the border visibility
+      color: const Color(0xFFFF6C37),
+      elevation: 2,
       child: Theme(
         data: Theme.of(context).copyWith(
-          dividerColor: Colors.transparent, // Removes the divider when expanded
+          dividerColor: const Color(0xFFFF6C37),
         ),
         child: ExpansionTile(
           title: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
+          iconColor: Colors.white,
+          collapsedIconColor: Colors.white,
+          backgroundColor: const Color(
+              0xFFFF6C37), // Ensures the same background for the tile header
+          childrenPadding: EdgeInsets.zero,
+          tilePadding: const EdgeInsets.symmetric(horizontal: 16.0),
           children: [
             Container(
               color: Colors.white, // Background color when expanded
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 content,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black, // Text color for the content
                 ),
               ),
             ),
           ],
-          iconColor: Colors.white,
-          collapsedIconColor: Colors.white,
-          backgroundColor: Colors.orange, // Ensures the same background for the tile header
-          childrenPadding: EdgeInsets.zero,
-          tilePadding: EdgeInsets.symmetric(horizontal: 16.0),
         ),
       ),
     );

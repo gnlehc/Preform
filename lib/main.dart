@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:preform/firebase_options.dart';
+import 'package:preform/pages/feedback_page.dart';
 import 'package:preform/pages/home.dart';
 import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
-      home: const Home(),
+      home: const FeedbackPage(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(

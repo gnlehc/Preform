@@ -19,7 +19,7 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
           margin: const EdgeInsets.all(16),
           elevation: 0,
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: const Color(0xFFFF6C37)),
+            side: BorderSide(color: const Color(0xFFFF6C37), width: 2.0),
             borderRadius: const BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(

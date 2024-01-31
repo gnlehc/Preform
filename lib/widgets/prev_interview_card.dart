@@ -34,7 +34,7 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
           margin: const EdgeInsets.all(25),
           elevation: 0,
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: const Color(0xFFFF6C37)),
+            side: BorderSide(color: const Color(0xFFFF6C37), width: 2.0),
             borderRadius: const BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(

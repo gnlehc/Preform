@@ -6,7 +6,6 @@ import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
 import 'package:preform/pages/splashscreen.dart';
 import 'package:preform/user_auth/user_provider.dart';
-import 'package:preform/widgets/navbar.dart';
 import 'package:provider/provider.dart';
 
 Future main() async {
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
-      home: const MyHomePage(),
+      home: const Home(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -51,22 +50,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
+  // int _currentIndex = 0;
 
-  void _onNavbarItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+  // void _onNavbarItemTapped(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SplashScreen(),
-      bottomNavigationBar: Navbar(
-        currentIndex: _currentIndex,
-        onTap: _onNavbarItemTapped,
-      ),
+      // bottomNavigationBar: Navbar(
+      //   currentIndex: _currentIndex,
+      //   onTap: _onNavbarItemTapped,
+      // ),
     );
   }
 }

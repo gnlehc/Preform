@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+
 import '../widgets/bottom_navbar.dart';
-import '../widgets/dropdown.dart';
+
 import '../widgets/dashboardwidget.dart'; // Make sure the file name is correct
 
 class Home extends StatefulWidget {
@@ -13,8 +13,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0; // Current index of the selected tab
-  // Example score to pass to the ScoreIndicator
-  final int _score = 90; // This can be any value from 1 to 100
 
   void _onNavBarTap(int index) {
     setState(() {
@@ -24,52 +22,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // Calculate the percentage for the circular indicator
-    double percent = _score / 100;
-
-    // Define the gradient color based on the score
-    Color progressColor = Color.lerp(Colors.grey, Colors.orange, percent)!;
-
-    // Define your questions and answers for the CustomExpansionTile
-    final List<Map<String, String>> qaPairs = [
-      {
-        'question':
-            'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
-        'answer':
-            'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
-      },
-      {
-        'question':
-            'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
-        'answer':
-            'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
-      },
-      {
-        'question':
-            'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
-        'answer':
-            'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
-      },
-      {
-        'question':
-            'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
-        'answer':
-            'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
-      },
-      {
-        'question':
-            'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
-        'answer':
-            'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
-      },
-      {
-        'question':
-            'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
-        'answer':
-            'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
-      },
-    ];
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -78,7 +30,7 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 50,
+                height: 40,
               ),
               const Text(
                 "Dashboard",
@@ -104,46 +56,6 @@ class _HomeState extends State<Home> {
                   'Presentation skills': 36,
                 },
               ),
-              Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Center(
-                    child: CircularPercentIndicator(
-                      radius: 120.0,
-                      lineWidth: 13.0,
-                      animation: true,
-                      percent: percent,
-                      center: Text(
-                        _score.toString(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                      footer: const Padding(
-                        padding: EdgeInsets.only(top: 16.0),
-                        child: Text(
-                          'Overall Score',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17.0,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      circularStrokeCap: CircularStrokeCap.round,
-                      backgroundColor: Colors.grey[300]!,
-                      progressColor: progressColor,
-                    ),
-                  )),
-              // ... Add other widgets or CustomExpansionTiles
-              // Insert CustomExpansionTiles here
-              ...qaPairs
-                  .map((qaPair) => CustomExpansionTile(
-                        title: qaPair['question']!,
-                        content: qaPair['answer']!,
-                      ))
-                  .toList(),
             ],
           ),
         ),

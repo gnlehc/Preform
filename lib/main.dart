@@ -68,13 +68,24 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:preform/firebase_options.dart';
-import 'package:preform/pages/home.dart'; // Import 'home.dart'
-// Other imports are not necessary if we are not using them directly
+import 'package:preform/pages/home.dart';
+import 'package:preform/pages/login.dart';
+import 'package:preform/pages/signup.dart';
+import 'package:preform/pages/splashscreen.dart';
+import 'package:preform/user_auth/user_provider.dart';
+import 'package:preform/widgets/navbar.dart';
+import 'package:provider/provider.dart';
+
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

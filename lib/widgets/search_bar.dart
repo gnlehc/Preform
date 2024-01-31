@@ -18,6 +18,11 @@ class SearchBarState extends State<SearchBarInterview> {
     'IT Consulting',
     'Design'
   ];
+  final List<String> interviewTypes = [
+    'HR Interview',
+    'User Interview',
+    'Case Interview'
+  ];
   final TextEditingController _searchController = TextEditingController();
   bool isFilterClicked = false;
   List<bool> isCheckedList = List.generate(8, (index) => false);
@@ -161,6 +166,30 @@ class SearchBarState extends State<SearchBarInterview> {
       SizedBox(height: 12),
       Text("Level",
           style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+      ListView.builder(
+        itemCount: interviewTypes.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              elevation: 2.0,
+              child: ListTile(
+                title: Text(interviewTypes[index]),
+                trailing: Checkbox(
+                  value: false, // Provide the value based on the checked state
+                  onChanged: (bool? value) {
+                    // Handle checkbox state change
+                  },
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     ]));
   }
 }

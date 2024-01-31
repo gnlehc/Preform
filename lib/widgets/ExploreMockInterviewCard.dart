@@ -34,10 +34,10 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
               Row(
                 // crossAxisAlignment: CrossAxisAlignment.,
                 children: <Widget>[
-
                   Container(
-                  width: 50.0, // Set the width and height to make the circle larger
-                  height: 50.0,
+                    width:
+                        50.0, // Set the width and height to make the circle larger
+                    height: 50.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
@@ -106,8 +106,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                           color: Colors.transparent,
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 135),
+                          padding: const EdgeInsets.symmetric(horizontal: 135),
                           child: Row(children: <Widget>[
                             Container(
                               height: 28,

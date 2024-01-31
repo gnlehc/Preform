@@ -10,16 +10,17 @@ class SearchBarInterview extends StatefulWidget {
 class SearchBarState extends State<SearchBarInterview> {
   final List<String> industries = [
     'All jobs',
-    'Data & Product Management',
-    'Business Dev & Sales',
-    'Marketing & Social Media',
-    'Finance & Accounting',
-    'Recruiting & People',
-    'IT & Engineering',
-    'Design & Creative'
+    'Product Management',
+    'Business Devwlopment',
+    'Marketing',
+    'Finance',
+    'Recruiting',
+    'IT Consulting',
+    'Design'
   ];
   final TextEditingController _searchController = TextEditingController();
   bool isFilterClicked = false;
+  List<bool> isCheckedList = List.generate(8, (index) => false);
 
   @override
   Widget build(BuildContext context) {
@@ -112,57 +113,57 @@ class SearchBarState extends State<SearchBarInterview> {
     }).toList();
 
     return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 10),
-          Text("Industries"),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                crossAxisSpacing: 2.0,
-                mainAxisSpacing: 2.0,
-              ),
-              itemCount: filteredItems.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                    side: BorderSide(
-                      color: Colors.orange,
-                      width: 1.0,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      SizedBox(height: 12),
+      Text("Industries",
+          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+      Expanded(
+        child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              crossAxisSpacing: 2.0,
+              mainAxisSpacing: 2.0,
+            ),
+            itemCount: filteredItems.length,
+            itemBuilder: (context, index) {
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  side: BorderSide(
+                    color: Colors.orange,
+                    width: 1.0,
+                  ),
+                ),
+                child: Stack(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Text(
+                      filteredItems[index],
+                      style: TextStyle(fontSize: 12.0),
                     ),
                   ),
-                  child: Stack(
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child: Text(
-                            filteredItems[index],
-                            style: TextStyle(fontSize: 12.0),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: IconButton(
-                              icon: Icon(Icons.check),
-                              onPressed: () {
-                                // Handle checklist button click
-                             },
-                            ),
-                          )
-                      )
-                    ]
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Checkbox(
+                        checkColor: Colors.white,
+                        value: isCheckedList[index],
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isCheckedList[index] = value!;
+                          });
+                        }),
                   )
-              }
-            );
-            },
-            )
-            )
-            
+                ]),
+              );
+            }),
+      ),
+      SizedBox(height: 12),
+      Text("Level",
+          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+    ]));
+  }
 }
-
 
 void main() {
   runApp(MaterialApp(

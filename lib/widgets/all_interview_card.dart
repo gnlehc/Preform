@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -24,12 +22,12 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
         child: Card(
           margin: const EdgeInsets.all(25),
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: const Color(0xFFFF6C37)),
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(color: Color(0xFFFF6C37)),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             width: 300,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -37,10 +35,10 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                 Row(
                   children: <Widget>[
                     SvgPicture.asset("lib/images/data_chart_icon.svg"),
-                    SizedBox(width: 13),
+                    const SizedBox(width: 13),
                   ],
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 20.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -50,8 +48,8 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                     ),
                   ),
                 ),
-                SizedBox(height: 4),
-                Padding(
+                const SizedBox(height: 4),
+                const Padding(
                   padding: EdgeInsets.only(bottom: 10),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -61,7 +59,7 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                     ),
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -75,17 +73,17 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                     value: progressValue,
                     backgroundColor: Colors.grey[300],
                     valueColor:
-                        AlwaysStoppedAnimation<Color>(const Color(0xFFFF6C37)),
+                        const AlwaysStoppedAnimation<Color>(Color(0xFFFF6C37)),
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
                       // TODO: Implement view feedback action
                     },
-                    child: Row(
+                    child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(

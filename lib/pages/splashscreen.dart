@@ -17,13 +17,13 @@ class _SplashScreenState extends State<SplashScreen>
 
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2, milliseconds: 50),
+      duration: const Duration(seconds: 2, milliseconds: 50),
     );
 
     _fadeAnimation =
         Tween<double>(begin: 0, end: 1).animate(_animationController);
     _animationController.forward().then((value) {
-      Timer(Duration(seconds: 2), () {
+      Timer(const Duration(seconds: 2), () {
         Navigator.of(context).pushReplacementNamed('/signup');
       });
     });
@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnimation,
-          child: Image(
+          child: const Image(
             image: AssetImage('assets/img/logopreform.png'),
             width: 200, // Set the width
             height: 200,

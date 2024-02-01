@@ -35,7 +35,6 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/dropdown.dart';
-import '../widgets/dashboardwidget.dart'; // Make sure the file name is correct
 import '../widgets/dashboardcard.dart'; // Make sure the file name is correct
 import '../widgets/dashboardwidget.dart';
 
@@ -65,24 +64,8 @@ class _HomeState extends State<Home> {
     // Define the gradient color based on the score
     Color progressColor = Color.lerp(Colors.grey, Colors.orange, percent)!;
 
-        // Define your questions and answers for the CustomExpansionTile
     // Define your questions and answers for the CustomExpansionTile
     final List<Map<String, String>> qaPairs = [
-      {
-        'question': 'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
-        'answer': 'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
-      },
-      {
-        'question': 'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
-        'answer': 'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
-        'question':
-            'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
-        'answer':
-            'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
-      },
-            {
-        'question': 'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
-        'answer': 'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
       {
         'question':
             'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
@@ -90,16 +73,28 @@ class _HomeState extends State<Home> {
             'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
       },
       {
-        'question': 'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
-        'answer': 'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
         'question':
             'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
         'answer':
             'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
       },
-            {
-        'question': 'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
-        'answer': 'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
+      {
+        'question':
+            'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
+        'answer':
+            'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
+      },
+      {
+        'question':
+            'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
+        'answer':
+            'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
+      },
+      {
+        'question':
+            'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
+        'answer':
+            'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
       },
       {
         'question':

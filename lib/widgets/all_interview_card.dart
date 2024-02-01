@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-/*
+
 void main() {
-  runApp(MaterialApp(home: JobCard()));
+  runApp(MaterialApp(home: AllInterviewCard()));
 }
-*/
+
 
 class AllInterviewCard extends StatefulWidget {
   @override
@@ -17,8 +17,7 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return Center(
         child: Card(
           margin: const EdgeInsets.all(25),
           elevation: 0,
@@ -101,7 +100,6 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

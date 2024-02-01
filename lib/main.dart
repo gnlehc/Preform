@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:preform/firebase_options.dart';
+import 'package:preform/middleware/auth_middleware.dart';
 import 'package:preform/pages/feedback_page.dart';
 import 'package:preform/pages/home.dart';
 import 'package:preform/pages/login.dart';
@@ -27,19 +29,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    // materialApp -> Get
+    return GetMaterialApp(
+      initialBinding: BindingsBuilder(() {
+        Get.put(UserProvider());
+      }),
       initialRoute: '/',
-      home: const FeedbackPage(),
+      home: const SplashScreen(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
           Theme.of(context).textTheme,
         ),
       ),
-      routes: {
-        '/login': (context) => const LoginForm(),
-        '/signup': (context) => const SignUpForm(),
-      },
+      // ini buat middleware, route harus begini pake Get
+      // getPages: [
+      //   GetPage(
+      //     name: '/',
+      //     page: () => const SplashScreen(),
+      //   ),
+      //   GetPage(
+      //     name: '/home',
+      //     page: () => const Home(),
+      //   ),
+      //   GetPage(
+      //     name: '/login',
+      //     page: () => const LoginForm(),
+      //   ),
+      //   GetPage(
+      //       name: '/signup',
+      //       page: () => const SignUpForm(),
+      //       middlewares: [AuthMiddleware()]),
+      // ],
       debugShowCheckedModeBanner: false,
     );
   }

@@ -112,6 +112,8 @@ dependencies:
   provider: ^6.1.1
   flutter_svg: ^0.22.0
   percent_indicator: ^3.0.1 # Moved this from dev_dependencies to dependencies
+  get: ^4.6.1         
+  get_storage: ^2.0.3
 
 dev_dependencies:
   flutter_test:

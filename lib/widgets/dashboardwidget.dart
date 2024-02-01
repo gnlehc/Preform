@@ -7,6 +7,7 @@ class DashboardWidget extends StatelessWidget {
   final String userName;
   final String latestScore;
   final String interviewType;
+  final String company;
   final String role;
   final String averageScore;
   final Map<String, int> scores;
@@ -16,6 +17,7 @@ class DashboardWidget extends StatelessWidget {
     required this.userName,
     required this.latestScore,
     required this.interviewType,
+    required this.company,
     required this.role,
     required this.averageScore,
     required this.scores,
@@ -24,12 +26,14 @@ class DashboardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Gradient background colors
-    final gradientStartColor = Colors.redAccent; // replace with start gradient color
-    final gradientEndColor = Colors.red; // replace with end gradient color
+    const gradientStartColor =
+        Colors.redAccent; // replace with start gradient color
+    const gradientEndColor =
+        Color(0xFFCE194B); // replace with end gradient color
 
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [gradientStartColor, gradientEndColor],
@@ -40,34 +44,41 @@ class DashboardWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // User details and average score
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Placeholder for user image
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 24,
-                  child: Icon(Icons.person), // Placeholder for user image icon
+                  child: Icon(Icons.person),
                 ),
-                // Welcome text
+
                 Expanded(
-                  child: Text(
-                    'Welcome, $userName',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                    textAlign: TextAlign.center,
+                    child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Welcome, $userName',
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.white),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        'Average Score $averageScore',
+                        style:
+                            const TextStyle(fontSize: 14, color: Colors.white),
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
                   ),
-                ),
+                )),
                 // Average score
-                Text(
-                  'Average Score\n$averageScore',
-                  style: TextStyle(fontSize: 20, color: Colors.white),
-                  textAlign: TextAlign.right,
-                ),
               ],
             ),
-            SizedBox(height: 16),
-            // White box for details and indicators
+            const SizedBox(height: 16),
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -75,18 +86,65 @@ class DashboardWidget extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    '$interviewType: $role',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                    textAlign: TextAlign.center,
+                  Row(
+                    children: [
+                      Text(
+                        '$interviewType: $company',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF46008C),
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(width: 50),
+                      const Text(
+                        "100/100",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
                   ),
-                  SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Text(
+                        role,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(
+                        width: 70,
+                      ),
+                      const Text(
+                        "Average Score",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
                   // Performance indicators
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: scores.entries
-                        .map((entry) => _buildScoreIndicator(entry.key, entry.value))
+                        .map((entry) =>
+                            _buildScoreIndicator(entry.key, entry.value))
                         .toList(),
                   ),
                 ],
@@ -117,21 +175,31 @@ class DashboardWidget extends StatelessWidget {
           percent: percent,
           center: Text(
             '$score',
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
-          progressColor: colorMap[skill] ?? Colors.grey, // Default color if skill not found
+          progressColor: colorMap[skill] ??
+              Colors.grey, // Default color if skill not found
           backgroundColor: Colors.grey[300]!,
           circularStrokeCap: CircularStrokeCap.round,
           animation: true,
         ),
-        SizedBox(height: 8),
-        Text(
-          skill,
-          style: TextStyle(fontSize: 14, color: Colors.black),
-        ),
+        const SizedBox(height: 8),
+        SizedBox(
+          width: 76,
+          height: 40,
+          child: Text(
+            skill,
+            style: const TextStyle(
+              fontSize: 12,
+              color: Colors.black,
+            ),
+            textAlign: TextAlign.center,
+            softWrap: true,
+          ),
+        )
       ],
     );
   }

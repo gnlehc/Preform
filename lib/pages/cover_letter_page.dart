@@ -19,7 +19,6 @@ class CoverLetterPage extends StatefulWidget {
 }
 
 class _CoverLetterPageState extends State<CoverLetterPage> {
-
   CVOption? _cvOption = CVOption.curriculumVitae;
   File? _cvFile;
 
@@ -36,10 +35,9 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     }
   }
 
-  void _analyzeCV() async  {
+  void _analyzeCV() async {
     if (_cvFile != null) {
       // Implement logic cv analysis disini (pake openai api)
-
 
       // ------------------------
 
@@ -67,7 +65,6 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     });
   }
 
-
   // 2 = Cover Letter Page
   int _selectedIndex = 2;
 
@@ -91,17 +88,37 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
         Navigator.pushNamed(context, '/accountPage');
         break;
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white,
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Flexible(
+            child: Padding(
+                padding: EdgeInsets.only(left: 25, right: 25),
+                child: Text(
+                  "Analyze your CV or Resume with AI",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
+                      color: const Color(0xFFFF6C37)),
+                )),
+          ),
+          Divider(
+            height: 10,
+            thickness: 1,
+            color: Colors.transparent,
+          ),
           RadioListTile<CVOption>(
-            title: const Text('Curriculum Vitae', style: TextStyle(color: const Color(0xFFFF6C37)),),
+            selectedTileColor: const Color(0xFFFF6C37),
+            title: const Text(
+              'Curriculum Vitae',
+              style: TextStyle(color: const Color(0xFFFF6C37)),
+            ),
             value: CVOption.curriculumVitae,
             groupValue: _cvOption,
             onChanged: (CVOption? value) {
@@ -109,60 +126,133 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                 _cvOption = value;
               });
             },
+            activeColor: const Color(0xFFFF6C37),
           ),
           RadioListTile<CVOption>(
-            title: const Text('Resume',style: TextStyle(color: const Color(0xFFFF6C37)),),
-            value: CVOption.resume,
-            groupValue: _cvOption,
-            onChanged: (CVOption? value) {
-              setState(() {
-                _cvOption = value;
-              });
-            },
-          ),
+              selectedTileColor: const Color(0xFFFF6C37),
+              title: const Text(
+                'Resume',
+                style: TextStyle(color: const Color(0xFFFF6C37)),
+              ),
+              value: CVOption.resume,
+              groupValue: _cvOption,
+              onChanged: (CVOption? value) {
+                setState(() {
+                  _cvOption = value;
+                });
+              },
+              activeColor: const Color(0xFFFF6C37)),
           SizedBox(height: 20),
           _cvFile != null
-              ? Column(
-            children: [
-              Text('Selected File: ${_cvFile!.path.split('/').last}'),
-              Row(
+              ? Container(
+            padding: const EdgeInsets.all(40),
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xFFFF6C37), width: 2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              children: [
+                Icon(
+                  Icons.file_upload,
+                  color: Color(0xFFFF6C37),
+                  size: 24,
+                ),
+                SizedBox(height: 10,),
+                Text('Selected File: ${_cvFile!
+                    .path
+                    .split('/')
+                    .last}'),
+                TextButton(
+                  onPressed: _clearSelection,
+                  child: Text('Cancel', style: TextStyle(color: Color(0xFFFF6C37)),),
+                ),
+              ],
+            ),
+          ) : Container(
+            padding: EdgeInsets.all(40),
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xFFFF6C37), width: 2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              children: [
+                Icon(
+                  Icons.file_upload,
+                  color: Color(0xFFFF6C37),
+                  size: 24,
+                ),
+                TextButton(
+                  onPressed: _pickCV,
+                  child: Text(
+                    'Upload CV .pdf',
+                    style: TextStyle(
+                      color: Color(0xFFFF6C37),
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ) /* ElevatedButton(
+                  onPressed: _pickCV,
+                  child: Text(
+                    'Upload',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ), */
+          /* Column(
+                  children: [
+                    Text('Selected File: ${_cvFile!.path.split('/').last}'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _pickCV,
+                          child: Text('Change File'),
+                        ),
+                        SizedBox(width: 8),
+                        TextButton(
+                          onPressed: _clearSelection,
+                          child: Text('Cancel'),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+                */
+
+          , SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: ElevatedButton(
+              // implements start analyzing
+              onPressed: _analyzeCV,
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 35),
+                alignment: Alignment.centerLeft,
+                backgroundColor: const Color(0xFFFF6C37),
+              ),
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    onPressed: _pickCV,
-                    child: Text('Change File'),
-                  ),
-                  SizedBox(width: 8),
-                  TextButton(
-                    onPressed: _clearSelection,
-                    child: Text('Cancel'),
+                  Text(
+                    'Analyze',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
-            ],
-          ): ElevatedButton(
-            onPressed: _pickCV,
-            child: Text('Upload CV'),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: _analyzeCV,
-            child: Text('Analyze'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.orange,
             ),
-          ),
+          )
         ],
       ),
-
-
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onItemSelected: _onNavBarTap,
       ),
     );
   }
-
-
-
 }

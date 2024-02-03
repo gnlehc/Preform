@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+void main() {
+  runApp(MaterialApp(home: DashboardWidget(userName: 'Chelsea Ng', latestScore: "77", interviewType: "HRD", role: "Software Engineer", averageScore: "77", scores: {
+    'Technical ability': 78,
+    'Leadership skills': 100,
+    'Team skills': 56,
+    'Presentation skills': 36,
+  })));
+}
+
 class DashboardWidget extends StatelessWidget {
   final String userName;
   final String latestScore;
@@ -52,14 +61,14 @@ class DashboardWidget extends StatelessWidget {
                 Expanded(
                   child: Text(
                     'Welcome, $userName',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: TextStyle(fontSize: 15, color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                 ),
                 // Average score
                 Text(
                   'Average Score\n$averageScore',
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  style: TextStyle(fontSize: 15, color: Colors.white),
                   textAlign: TextAlign.right,
                 ),
               ],
@@ -128,7 +137,7 @@ class DashboardWidget extends StatelessWidget {
         SizedBox(height: 8),
         Text(
           skill,
-          style: TextStyle(fontSize: 14, color: Colors.black),
+          style: TextStyle(fontSize: 8, color: Colors.black),
         ),
       ],
     );

@@ -181,7 +181,7 @@ class _HomeState extends State<Home> {
                         'Overall Score',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 17.0,
+                          fontSize: 20.0,
                           color: Colors.black,
                         ),
                       ),

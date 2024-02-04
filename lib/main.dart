@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:preform/firebase_options.dart';
+import 'package:preform/pages/account_page.dart';
+import 'package:preform/pages/cover_letter_feedback_page.dart';
+import 'package:preform/pages/cover_letter_page.dart';
 import 'package:preform/pages/home.dart';
+import 'package:preform/pages/interview_page.dart';
 import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
 import 'package:preform/pages/splashscreen.dart';
 import 'package:preform/pages/tts_testing.dart';
 import 'package:preform/user_auth/user_provider.dart';
+import 'package:preform/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
 import 'middleware/auth_middleware.dart';
@@ -59,33 +64,33 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/signup',
             page: () => const SignUpForm(),
-            middlewares: [AuthMiddleware()]),
+            middlewares: [AuthMiddleware()]
+        ),
+        GetPage(
+          name: '/interviewPage',
+          page: () => const InterviewPage(),
+        ),
+        GetPage(
+          name: '/coverLetterPage',
+          page: () => const CoverLetterPage(),
+        ),
+        GetPage(
+          name: '/accountPage',
+          page: () => const AccountPage(),
+        ),
+        GetPage(
+          name: '/loadingPage',
+          page: () => const LoadingIndicator(),
+        ),
+        GetPage(
+          name: '/coverLetterFeedbackPage',
+          page: () => const CoverLetterFeedbackPage(),
+        ),
+        // Other routes :
+
       ],
       debugShowCheckedModeBanner: false,
 
-//     return MaterialApp(
-
-//         // Removed initialRoute to prevent navigation to other screens on startup
-//         home: const Home(),
-//         // This sets Home as the first page
-//         theme: ThemeData(
-//           scaffoldBackgroundColor: Colors.white,
-//           textTheme: GoogleFonts.dmSansTextTheme(
-//             Theme.of(context).textTheme,
-//           ),
-//         ),
-//         // Removed the '/login' and '/signup' routes, as they're not needed for initial navigation
-//         debugShowCheckedModeBanner: false,
-
-//         initialRoute: '/',
-//         routes: {
-//           // '/': (context) => Home(), // Home page
-//           '/interviewPage': (context) => InterviewPage(),
-//           '/coverLetterPage': (context) => CoverLetterPage(),
-//           '/accountPage': (context) => AccountPage(),
-//           '/loadingPage': (context) => LoadingIndicator(),
-//           '/coverLetterFeedbackPage' : (context) => CoverLetterFeedbackPage(),
-//         } // Other page
     );
   }
 }

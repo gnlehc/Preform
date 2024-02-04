@@ -1,12 +1,12 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/bottom_navbar.dart';
 
 import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 
 void main() {
-  runApp(const MaterialApp(home: CoverLetterPage()));
+  runApp(MaterialApp(home: CoverLetterPage()));
 }
 
 enum CVOption { curriculumVitae, resume }
@@ -46,7 +46,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
       Navigator.of(context).pushNamed('/loadingPage');
 
       // Simulate loading delay
-      await Future.delayed(const Duration(seconds: 5));
+      await Future.delayed(Duration(seconds: 5));
 
       // After loading, navigate ke feedback page
       Navigator.of(context).pushNamed('/coverLetterFeedbackPage');
@@ -54,7 +54,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     } else {
       // Prompt the user to select a file first
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select a file first')),
+        SnackBar(content: Text('Please select a file first')),
       );
     }
   }
@@ -97,10 +97,27 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Flexible(
+            child: Padding(
+                padding: EdgeInsets.only(left: 25, right: 25),
+                child: Text(
+                  "Analyze your CV or Resume with AI",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
+                      color: const Color(0xFFFF6C37)),
+                )),
+          ),
+          Divider(
+            height: 10,
+            thickness: 1,
+            color: Colors.transparent,
+          ),
           RadioListTile<CVOption>(
+            selectedTileColor: const Color(0xFFFF6C37),
             title: const Text(
               'Curriculum Vitae',
-              style: TextStyle(color: Color(0xFFFF6C37)),
+              style: TextStyle(color: const Color(0xFFFF6C37)),
             ),
             value: CVOption.curriculumVitae,
             groupValue: _cvOption,
@@ -109,23 +126,81 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                 _cvOption = value;
               });
             },
+            activeColor: const Color(0xFFFF6C37),
           ),
           RadioListTile<CVOption>(
-            title: const Text(
-              'Resume',
-              style: TextStyle(color: Color(0xFFFF6C37)),
-            ),
-            value: CVOption.resume,
-            groupValue: _cvOption,
-            onChanged: (CVOption? value) {
-              setState(() {
-                _cvOption = value;
-              });
-            },
-          ),
-          const SizedBox(height: 20),
+              selectedTileColor: const Color(0xFFFF6C37),
+              title: const Text(
+                'Resume',
+                style: TextStyle(color: const Color(0xFFFF6C37)),
+              ),
+              value: CVOption.resume,
+              groupValue: _cvOption,
+              onChanged: (CVOption? value) {
+                setState(() {
+                  _cvOption = value;
+                });
+              },
+              activeColor: const Color(0xFFFF6C37)),
+          SizedBox(height: 20),
           _cvFile != null
-              ? Column(
+              ? Container(
+            padding: const EdgeInsets.all(40),
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xFFFF6C37), width: 2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              children: [
+                Icon(
+                  Icons.file_upload,
+                  color: Color(0xFFFF6C37),
+                  size: 24,
+                ),
+                SizedBox(height: 10,),
+                Text('Selected File: ${_cvFile!
+                    .path
+                    .split('/')
+                    .last}'),
+                TextButton(
+                  onPressed: _clearSelection,
+                  child: Text('Cancel', style: TextStyle(color: Color(0xFFFF6C37)),),
+                ),
+              ],
+            ),
+          ) : Container(
+            padding: EdgeInsets.all(40),
+            decoration: BoxDecoration(
+              border: Border.all(color: Color(0xFFFF6C37), width: 2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              children: [
+                Icon(
+                  Icons.file_upload,
+                  color: Color(0xFFFF6C37),
+                  size: 24,
+                ),
+                TextButton(
+                  onPressed: _pickCV,
+                  child: Text(
+                    'Upload CV .pdf',
+                    style: TextStyle(
+                      color: Color(0xFFFF6C37),
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ) /* ElevatedButton(
+                  onPressed: _pickCV,
+                  child: Text(
+                    'Upload',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ), */
+          /* Column(
                   children: [
                     Text('Selected File: ${_cvFile!.path.split('/').last}'),
                     Row(
@@ -133,29 +208,45 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                       children: [
                         ElevatedButton(
                           onPressed: _pickCV,
-                          child: const Text('Change File'),
+                          child: Text('Change File'),
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: 8),
                         TextButton(
                           onPressed: _clearSelection,
-                          child: const Text('Cancel'),
+                          child: Text('Cancel'),
                         ),
                       ],
                     ),
                   ],
                 )
-              : ElevatedButton(
-                  onPressed: _pickCV,
-                  child: const Text('Upload CV'),
-                ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: _analyzeCV,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.orange,
+                */
+
+          , SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: ElevatedButton(
+              // implements start analyzing
+              onPressed: _analyzeCV,
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 35),
+                alignment: Alignment.centerLeft,
+                backgroundColor: const Color(0xFFFF6C37),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Analyze',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
-            child: const Text('Analyze'),
-          ),
+          )
         ],
       ),
       bottomNavigationBar: BottomNavBar(

@@ -115,6 +115,8 @@ dependencies:
 
   get: ^4.6.1         
   get_storage: ^2.0.3
+  http: ^1.1.0
+  serious_python: ^0.1.5
   file_picker: ^6.1.1
 
 

@@ -7,6 +7,7 @@ import 'package:preform/pages/home.dart';
 import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
 import 'package:preform/pages/splashscreen.dart';
+import 'package:preform/pages/tts_testing.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: const SplashScreen(),
+      home: TtsTesting(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/',
-          page: () => const SplashScreen(),
+          page: () => TtsTesting(),
         ),
         GetPage(
           name: '/home',

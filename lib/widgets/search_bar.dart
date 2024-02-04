@@ -39,7 +39,7 @@ class SearchBarState extends State<SearchBarInterview> {
                 Expanded(
                   child: _buildSearchBar(),
                 ),
-                SizedBox(width: 16.0),
+                const SizedBox(width: 16.0),
                 _buildElevatedButton(),
               ],
             ),
@@ -58,7 +58,7 @@ class SearchBarState extends State<SearchBarInterview> {
             const EdgeInsets.symmetric(horizontal: 15.0, vertical: 12.0),
         hintText: 'Search industries',
         hintStyle: const TextStyle(fontSize: 14.0),
-        suffixIcon: Icon(Icons.search, color: Colors.orange),
+        suffixIcon: const Icon(Icons.search, color: Colors.orange),
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(
@@ -70,7 +70,7 @@ class SearchBarState extends State<SearchBarInterview> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: Colors.orange,
           ),
         ),
@@ -96,12 +96,12 @@ class SearchBarState extends State<SearchBarInterview> {
         padding: const EdgeInsets.all(5.0),
         elevation: 0,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Image(
+            Image(
               image: AssetImage('assets/img/filter.png'),
               width: 20,
               height: 20,
@@ -119,12 +119,12 @@ class SearchBarState extends State<SearchBarInterview> {
 
     return Expanded(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SizedBox(height: 12),
-      Text("Industries",
+      const SizedBox(height: 12),
+      const Text("Industries",
           style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
       Expanded(
         child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
               crossAxisSpacing: 2.0,
               mainAxisSpacing: 2.0,
@@ -134,7 +134,7 @@ class SearchBarState extends State<SearchBarInterview> {
               return Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
-                  side: BorderSide(
+                  side: const BorderSide(
                     color: Colors.orange,
                     width: 1.0,
                   ),
@@ -144,7 +144,7 @@ class SearchBarState extends State<SearchBarInterview> {
                     padding: const EdgeInsets.all(6.0),
                     child: Text(
                       filteredItems[index],
-                      style: TextStyle(fontSize: 12.0),
+                      style: const TextStyle(fontSize: 12.0),
                     ),
                   ),
                   Positioned(
@@ -163,8 +163,8 @@ class SearchBarState extends State<SearchBarInterview> {
               );
             }),
       ),
-      SizedBox(height: 12),
-      Text("Level",
+      const SizedBox(height: 12),
+      const Text("Level",
           style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
       ListView.builder(
         itemCount: interviewTypes.length,
@@ -195,7 +195,7 @@ class SearchBarState extends State<SearchBarInterview> {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: SearchBarInterview(),
   ));
 }

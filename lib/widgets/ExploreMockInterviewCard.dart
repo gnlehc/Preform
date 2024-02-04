@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
 
 /*
 void main() {
@@ -9,6 +9,8 @@ void main() {
  */
 
 class ExploreMockInterviewCard extends StatefulWidget {
+  const ExploreMockInterviewCard({super.key});
+
   @override
   _ExploreMockInterviewCardState createState() =>
       _ExploreMockInterviewCardState();
@@ -21,12 +23,12 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
       child: Card(
         margin: const EdgeInsets.all(16),
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: const Color(0xFFFF6C37), width: 2.0),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
+        shape: const RoundedRectangleBorder(
+          side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         child: Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           width: 400,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -52,7 +54,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   Flexible(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,67 +63,67 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                           padding: const EdgeInsets.symmetric(horizontal: 120),
                           child: Row(
                             children: <Widget>[
-                              Container(
+                              SizedBox(
                                 height: 28,
                                 // Set the desired width  // Set the desired height
                                 child: TextButton(
                                   onPressed: () {
                                     // do something ...
                                   },
-                                  child: Text(
-                                    'HR Interview',
-                                    style: TextStyle(fontSize: 9),
-                                  ),
                                   style: TextButton.styleFrom(
                                     backgroundColor: Colors.purple[100],
                                     foregroundColor: Colors.deepPurple[500],
                                   ),
+                                  child: const Text(
+                                    'HR Interview',
+                                    style: TextStyle(fontSize: 9),
+                                  ),
                                 ),
                               ),
-                              VerticalDivider(
+                              const VerticalDivider(
                                 width: 6,
                               ),
-                              Container(
+                              SizedBox(
                                 height: 28,
                                 // Set the desired width  // Set the desired height
                                 child: TextButton(
                                   onPressed: () {
                                     // do something ...
                                   },
-                                  child: Text(
-                                    'Entry Level',
-                                    style: TextStyle(fontSize: 9),
-                                  ),
                                   style: TextButton.styleFrom(
                                     backgroundColor: Colors.orange[300],
                                     foregroundColor: Colors.orange[900],
+                                  ),
+                                  child: const Text(
+                                    'Entry Level',
+                                    style: TextStyle(fontSize: 9),
                                   ),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        Divider(
+                        const Divider(
                           height: 6,
                           color: Colors.transparent,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 135),
                           child: Row(children: <Widget>[
-                            Container(
+                            SizedBox(
                               height: 28,
                               // Set the desired width  // Set the desired height
                               child: TextButton(
                                 onPressed: () {
                                   // do something ...
                                 },
-                                child: Text(
-                                  'Recommended by others',
-                                  style: TextStyle(fontSize: 9),
-                                ),
                                 style: TextButton.styleFrom(
                                   backgroundColor: Colors.yellow[100],
                                   foregroundColor: Colors.yellow[900],
+                                ),
+                                child: const Text(
+                                  'Recommended by others',
+                                  style: TextStyle(fontSize: 9),
                                 ),
                               ),
                             ),
@@ -132,14 +134,14 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                   ),
                 ],
               ),
-              Divider(
+              const Divider(
                 height: 10,
                 thickness: 1,
                 color: Colors.transparent,
               ),
               Container(
-                padding: EdgeInsets.only(left: 8, bottom: 5),
-                child: Column(
+                padding: const EdgeInsets.only(left: 8, bottom: 5),
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Row(
@@ -179,31 +181,31 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                   ],
                 ),
               ),
-              Divider(
+              const Divider(
                 height: 10,
                 thickness: 1,
                 color: Colors.transparent,
               ),
-              Divider(
+              const Divider(
                 height: 0.5,
                 thickness: 1,
                 color: Colors.transparent,
               ),
               Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-                Spacer(),
+                const Spacer(),
                 TextButton(
                   onPressed: () {
                     // TODO: Implement start interview action
                   },
-                  child: Row(
+                  style: TextButton.styleFrom(
+                    backgroundColor: const Color(0xFFFF6C37),
+                    foregroundColor: Colors.white, // Text color
+                  ),
+                  child: const Row(
                     children: [
                       Text('Start Now'),
                       Icon(Icons.arrow_forward),
                     ],
-                  ),
-                  style: TextButton.styleFrom(
-                    backgroundColor: const Color(0xFFFF6C37),
-                    foregroundColor: Colors.white, // Text color
                   ),
                 ),
               ]),

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-/*
+
 void main() {
-  runApp(MaterialApp(home: JobCard()));
+  runApp(const MaterialApp(home: AllInterviewCard()));
 }
-*/
+
 
 class AllInterviewCard extends StatefulWidget {
+  const AllInterviewCard({super.key});
+
   @override
   _AllInterviewCardState createState() => _AllInterviewCardState();
 }
@@ -17,16 +19,13 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return Center(
         child: Card(
           margin: const EdgeInsets.all(25),
           elevation: 0,
-
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: const Color(0xFFFF6C37), width: 2.0),
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
-
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
             padding: const EdgeInsets.all(16.0),
@@ -101,7 +100,6 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

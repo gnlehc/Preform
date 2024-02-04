@@ -22,11 +22,9 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
         child: Card(
           margin: const EdgeInsets.all(25),
           elevation: 0,
-
           shape: RoundedRectangleBorder(
             side: BorderSide(color: const Color(0xFFFF6C37), width: 2.0),
             borderRadius: const BorderRadius.all(Radius.circular(12)),
-
           ),
           child: Container(
             padding: const EdgeInsets.all(16.0),
@@ -85,7 +83,7 @@ class _AllInterviewCardState extends State<AllInterviewCard> {
                     onPressed: () {
                       // TODO: Implement view feedback action
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Text(

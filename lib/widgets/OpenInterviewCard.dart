@@ -13,8 +13,7 @@ class OpenInterviewCard extends StatefulWidget {
 class _OpenInterviewCardState extends State<OpenInterviewCard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return Center(
         child: Card(
           margin: const EdgeInsets.all(16),
           elevation: 0,
@@ -166,7 +165,6 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
             ),
           ),
         ),
-      ),
     );
   }
 

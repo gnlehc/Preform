@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(MaterialApp(home: LoadingIndicator()));
+}
+
 class LoadingIndicator extends StatefulWidget {
   const LoadingIndicator({super.key});
 
@@ -18,6 +22,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
         isLoading = false;
       });
     });
+    // Navigator.of(context).pushNamed('/coverLetterFeedbackPage');
   }
 
   @override

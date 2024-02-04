@@ -90,29 +90,6 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
 
-//     return MaterialApp(
-
-//         // Removed initialRoute to prevent navigation to other screens on startup
-//         home: const Home(),
-//         // This sets Home as the first page
-//         theme: ThemeData(
-//           scaffoldBackgroundColor: Colors.white,
-//           textTheme: GoogleFonts.dmSansTextTheme(
-//             Theme.of(context).textTheme,
-//           ),
-//         ),
-//         // Removed the '/login' and '/signup' routes, as they're not needed for initial navigation
-//         debugShowCheckedModeBanner: false,
-
-//         initialRoute: '/',
-//         routes: {
-//           // '/': (context) => Home(), // Home page
-//           '/interviewPage': (context) => InterviewPage(),
-//           '/coverLetterPage': (context) => CoverLetterPage(),
-//           '/accountPage': (context) => AccountPage(),
-//           '/loadingPage': (context) => LoadingIndicator(),
-//           '/coverLetterFeedbackPage' : (context) => CoverLetterFeedbackPage(),
-//         } // Other page
     );
   }
 }

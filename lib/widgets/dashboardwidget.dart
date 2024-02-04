@@ -7,6 +7,7 @@ void main() {
     'Leadership skills': 100,
     'Team skills': 56,
     'Presentation skills': 36,
+    'Organizational skills': 70,
   })));
 }
 

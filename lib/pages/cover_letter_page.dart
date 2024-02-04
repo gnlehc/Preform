@@ -90,7 +90,8 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
         {"role": "system", "content": "You are an expert Resume Analyzer. Provide a comprehensive review, feedback, and recommendation of this resume: $resumeText"},
         {"role": "user", "content": ""}
       ],
-      "max_tokens": 300,
+      // TODO : max_tokennya nanti bisa diatur antara 300-500 [ 1 word = 1.3 token | $0.001 per 1000 token ]
+      "max_tokens": 300, // ini untuk membatasi panjang kalimat / output yang dikeluarin gpt (biar hemat juga credit yang terpakai tiap keluarin output)
     });
 
     final response = await http.post(uri, headers: headers, body: requestBody);

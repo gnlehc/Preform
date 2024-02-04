@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:preform/widgets/dropdown.dart';
 
 import '../widgets/bottom_navbar.dart';
 
 import '../widgets/dashboardwidget.dart';
-import '../widgets/dropdown.dart'; // Make sure the file name is correct
 
 void main() {
-  runApp(MaterialApp(home: Home()));
+  runApp(const MaterialApp(home: Home()));
 }
 
 class Home extends StatefulWidget {
@@ -19,8 +19,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   // 0 = Home Page
-  int _selectedIndex = 0; // Current index of the selected tab
-  final int _score = 90;
+  int _selectedIndex = 0;
 
   // for bottom navbar navigation
   void _onNavBarTap(int index) {
@@ -46,14 +45,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
-    // Calculate the percentage for the circular indicator
+    int _score = 90;
     double percent = _score / 100;
-
-    // Define the gradient color based on the score
-    Color progressColor = Color.lerp(Colors.grey, Colors.orange, percent)!;
-
-    // Define your questions and answers for the CustomExpansionTile
+    Color progressColor =
+        Color.lerp(const Color(0xFFCE194B), const Color(0xFFFF6C37), percent)!;
     final List<Map<String, String>> qaPairs = [
       {
         'question':
@@ -91,28 +86,24 @@ class _HomeState extends State<Home> {
         'answer':
             'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
       },
-      // ... add other question-answer pairs
     ];
 
     return Scaffold(
       body: Column(
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 50, left: 10),
-                child: Text(
-                  'Dashboard',
-                  style: TextStyle(
-                    fontSize: 24.0, // Adjust the font size as needed
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xFFFF6C37),
-                  ),
+          const Row(children: [
+            Padding(
+              padding: EdgeInsets.only(top: 50, left: 10),
+              child: Text(
+                'Dashboard',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFFF6C37),
                 ),
               ),
-            ]
-          ),
-
+            ),
+          ]),
           Expanded(
             child: ListView(
               children: [
@@ -120,15 +111,16 @@ class _HomeState extends State<Home> {
                   userName: 'Chelsea Ng',
                   latestScore: 'Latest Score',
                   interviewType: 'HR Interview',
-                  role: 'Azure Microsoft: Intern Software Engineering',
-                  averageScore: '100/100', scores: {
-                  'Technical ability': 78,
-                  'Leadership skills': 100,
-                  'Team skills': 56,
-                  'Presentation skills': 36,
-                  'Organizational skills' : 70
-                },
-
+                  company: 'Azure Microsoft',
+                  role: 'Intern Software Engineering',
+                  averageScore: '100/100',
+                  scores: const {
+                    'Technical ability': 78,
+                    'Leadership skills': 100,
+                    'Team skills': 56,
+                    'Presentation skills': 36,
+                    'Organizational skills': 70
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -139,19 +131,19 @@ class _HomeState extends State<Home> {
                     percent: percent,
                     center: Text(
                       _score.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0,
                         color: Colors.black,
                       ),
                     ),
-                    footer: Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
+                    footer: const Padding(
+                      padding: EdgeInsets.only(top: 16.0),
                       child: Text(
                         'Overall Score',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
+                          fontSize: 17.0,
                           color: Colors.black,
                         ),
                       ),
@@ -165,9 +157,9 @@ class _HomeState extends State<Home> {
                 // Insert CustomExpansionTiles here
                 ...qaPairs
                     .map((qaPair) => CustomExpansionTile(
-                  title: qaPair['question']!,
-                  content: qaPair['answer']!,
-                ))
+                          title: qaPair['question']!,
+                          content: qaPair['answer']!,
+                        ))
                     .toList(),
               ],
             ),
@@ -179,6 +171,5 @@ class _HomeState extends State<Home> {
         onItemSelected: _onNavBarTap,
       ),
     );
-
   }
 }

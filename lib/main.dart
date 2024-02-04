@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:preform/firebase_options.dart';
+import 'package:preform/pages/account_page.dart';
+import 'package:preform/pages/cover_letter_feedback_page.dart';
+import 'package:preform/pages/cover_letter_page.dart';
 import 'package:preform/pages/home.dart';
+import 'package:preform/pages/interview_page.dart';
 import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
 import 'package:preform/pages/splashscreen.dart';
 import 'package:preform/user_auth/user_provider.dart';
+import 'package:preform/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
 import 'middleware/auth_middleware.dart';
@@ -58,7 +63,30 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/signup',
             page: () => const SignUpForm(),
-            middlewares: [AuthMiddleware()]),
+            middlewares: [AuthMiddleware()]
+        ),
+        GetPage(
+          name: '/interviewPage',
+          page: () => const InterviewPage(),
+        ),
+        GetPage(
+          name: '/coverLetterPage',
+          page: () => const CoverLetterPage(),
+        ),
+        GetPage(
+          name: '/accountPage',
+          page: () => const AccountPage(),
+        ),
+        GetPage(
+          name: '/loadingPage',
+          page: () => const LoadingIndicator(),
+        ),
+        GetPage(
+          name: '/coverLetterFeedbackPage',
+          page: () => const CoverLetterFeedbackPage(),
+        ),
+        // Other routes :
+
       ],
       debugShowCheckedModeBanner: false,
 

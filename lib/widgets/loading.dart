@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(home: LoadingIndicator()));
+  runApp(const MaterialApp(home: LoadingIndicator()));
 }
 
 class LoadingIndicator extends StatefulWidget {

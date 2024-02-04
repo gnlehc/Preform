@@ -1,12 +1,12 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/bottom_navbar.dart';
 
 import 'dart:io';
-import 'package:file_picker/file_picker.dart';
 
 void main() {
-  runApp(MaterialApp(home: CoverLetterPage()));
+  runApp(const MaterialApp(home: CoverLetterPage()));
 }
 
 enum CVOption { curriculumVitae, resume }
@@ -19,7 +19,6 @@ class CoverLetterPage extends StatefulWidget {
 }
 
 class _CoverLetterPageState extends State<CoverLetterPage> {
-
   CVOption? _cvOption = CVOption.curriculumVitae;
   File? _cvFile;
 
@@ -36,10 +35,9 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     }
   }
 
-  void _analyzeCV() async  {
+  void _analyzeCV() async {
     if (_cvFile != null) {
       // Implement logic cv analysis disini (pake openai api)
-
 
       // ------------------------
 
@@ -48,7 +46,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
       Navigator.of(context).pushNamed('/loadingPage');
 
       // Simulate loading delay
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 5));
 
       // After loading, navigate ke feedback page
       Navigator.of(context).pushNamed('/coverLetterFeedbackPage');
@@ -56,7 +54,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     } else {
       // Prompt the user to select a file first
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please select a file first')),
+        const SnackBar(content: Text('Please select a file first')),
       );
     }
   }
@@ -66,7 +64,6 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
       _cvFile = null;
     });
   }
-
 
   // 2 = Cover Letter Page
   int _selectedIndex = 2;
@@ -91,17 +88,20 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
         Navigator.pushNamed(context, '/accountPage');
         break;
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white,
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RadioListTile<CVOption>(
-            title: const Text('Curriculum Vitae', style: TextStyle(color: const Color(0xFFFF6C37)),),
+            title: const Text(
+              'Curriculum Vitae',
+              style: TextStyle(color: Color(0xFFFF6C37)),
+            ),
             value: CVOption.curriculumVitae,
             groupValue: _cvOption,
             onChanged: (CVOption? value) {
@@ -111,7 +111,10 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
             },
           ),
           RadioListTile<CVOption>(
-            title: const Text('Resume',style: TextStyle(color: const Color(0xFFFF6C37)),),
+            title: const Text(
+              'Resume',
+              style: TextStyle(color: Color(0xFFFF6C37)),
+            ),
             value: CVOption.resume,
             groupValue: _cvOption,
             onChanged: (CVOption? value) {
@@ -120,49 +123,45 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
               });
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           _cvFile != null
               ? Column(
-            children: [
-              Text('Selected File: ${_cvFile!.path.split('/').last}'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: _pickCV,
-                    child: Text('Change File'),
-                  ),
-                  SizedBox(width: 8),
-                  TextButton(
-                    onPressed: _clearSelection,
-                    child: Text('Cancel'),
-                  ),
-                ],
-              ),
-            ],
-          ): ElevatedButton(
-            onPressed: _pickCV,
-            child: Text('Upload CV'),
-          ),
-          SizedBox(height: 20),
+                  children: [
+                    Text('Selected File: ${_cvFile!.path.split('/').last}'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _pickCV,
+                          child: const Text('Change File'),
+                        ),
+                        const SizedBox(width: 8),
+                        TextButton(
+                          onPressed: _clearSelection,
+                          child: const Text('Cancel'),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              : ElevatedButton(
+                  onPressed: _pickCV,
+                  child: const Text('Upload CV'),
+                ),
+          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: _analyzeCV,
-            child: Text('Analyze'),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.orange,
             ),
+            child: const Text('Analyze'),
           ),
         ],
       ),
-
-
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onItemSelected: _onNavBarTap,
       ),
     );
   }
-
-
-
 }

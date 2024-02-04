@@ -23,11 +23,8 @@ class DashboardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Gradient background colors
-    const gradientStartColor =
-        Colors.redAccent; // replace with start gradient color
-    const gradientEndColor =
-        Color(0xFFCE194B); // replace with end gradient color
+    const gradientStartColor = Colors.redAccent;
+    const gradientEndColor = Color(0xFFCE194B);
 
     return Container(
       decoration: BoxDecoration(
@@ -98,7 +95,7 @@ class DashboardWidget extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 50),
+                      const SizedBox(width: 80),
                       const Text(
                         "100/100",
                         style: TextStyle(
@@ -122,7 +119,7 @@ class DashboardWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
-                        width: 70,
+                        width: 100,
                       ),
                       const Text(
                         "Average Score",
@@ -134,7 +131,6 @@ class DashboardWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 16),
                   // Performance indicators
                   Row(

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
-  runApp(MaterialApp(home: OpenInterviewCard()));
+  runApp(const MaterialApp(home: OpenInterviewCard()));
 }
 
 class OpenInterviewCard extends StatefulWidget {
+  const OpenInterviewCard({super.key});
+
   @override
   _OpenInterviewCardState createState() => _OpenInterviewCardState();
 }
@@ -17,12 +19,12 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
         child: Card(
           margin: const EdgeInsets.all(16),
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: const Color(0xFFFF6C37), width: 2.0),
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             width: 350,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -44,8 +46,8 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 8),
-                    Expanded(
+                    const SizedBox(width: 8),
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -74,13 +76,13 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
                     ),
                   ],
                 ),
-                Divider(
+                const Divider(
                   height: 15,
                   thickness: 1,
                   color: Colors.transparent,
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 8, bottom: 5),
+                  padding: const EdgeInsets.only(left: 8, bottom: 5),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -91,7 +93,7 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   height: 10,
                   thickness: 1,
                   color: Colors.transparent,
@@ -99,65 +101,65 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
                 IntrinsicHeight(
                   child: Row(
                     children: <Widget>[
-                      Container(
+                      SizedBox(
                         height: 32,
                         // Set the desired width  // Set the desired height
                         child: TextButton(
                           onPressed: () {
                            // do something...
                           },
-                          child: Text(
-                            'On-site',
-                            style: TextStyle(fontSize: 11),
-                          ),
                           style: TextButton.styleFrom(
                             backgroundColor: Colors.pink[100],
                             foregroundColor: Colors.pink,
                           ),
+                          child: const Text(
+                            'On-site',
+                            style: TextStyle(fontSize: 11),
+                          ),
                         ),
                       ),
-                      VerticalDivider(
+                      const VerticalDivider(
                           width: 10, thickness: 1, color: Colors.transparent),
-                      Container(
+                      SizedBox(
                         height: 30,
                         // Set the desired width  // Set the desired height
                         child: TextButton(
                           onPressed: () {
                             // do something ...
                           },
-                          child: Text(
-                            'Priority Slots Available',
-                            style: TextStyle(fontSize: 9),
-                          ),
                           style: TextButton.styleFrom(
                             backgroundColor: Colors.teal[100],
                             foregroundColor: Colors.teal[500],
                           ),
+                          child: const Text(
+                            'Priority Slots Available',
+                            style: TextStyle(fontSize: 9),
+                          ),
                         ),
                       ),
-                      Divider(height: 15, color: Colors.transparent),
+                      const Divider(height: 15, color: Colors.transparent),
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   height: 0.5,
                   thickness: 1,
                   color: Colors.transparent,
                 ),
                 Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
                     onPressed: () {
                       // TODO: Implement start interview action
                     },
-                    child: Row(
+                    style: TextButton.styleFrom(
+                      foregroundColor: const Color(0xFFFF6C37), // Text color
+                    ),
+                    child: const Row(
                       children: [
                         Text('Start Interview'),
                         Icon(Icons.arrow_forward),
                       ],
-                    ),
-                    style: TextButton.styleFrom(
-                      foregroundColor: const Color(0xFFFF6C37), // Text color
                     ),
                   ),
                 ]),
@@ -172,7 +174,7 @@ class _OpenInterviewCardState extends State<OpenInterviewCard> {
     return Row(
       children: <Widget>[
         Icon(icon, color: Colors.black, size: 16),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         Text(text),
       ],
     );

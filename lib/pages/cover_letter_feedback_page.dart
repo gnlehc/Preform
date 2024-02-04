@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/bottom_navbar.dart';
-
-import 'dart:io';
-import 'package:file_picker/file_picker.dart';
-
 import '../widgets/percentage_circle.dart';
 
 void main() {
-  runApp(MaterialApp(home: CoverLetterFeedbackPage()));
+  runApp(const MaterialApp(home: CoverLetterFeedbackPage()));
 }
 
 

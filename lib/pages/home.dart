@@ -111,6 +111,7 @@ class _HomeState extends State<Home> {
                   userName: 'Chelsea Ng',
                   latestScore: 'Latest Score',
                   interviewType: 'HR Interview',
+                  company: 'Azure Microsoft',
                   role: 'Intern Software Engineering',
                   averageScore: '100/100',
                   scores: const {
@@ -118,8 +119,8 @@ class _HomeState extends State<Home> {
                     'Leadership skills': 100,
                     'Team skills': 56,
                     'Presentation skills': 36,
+                    'Organizational skills': 70
                   },
-                  company: 'Azure Microsoft',
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),

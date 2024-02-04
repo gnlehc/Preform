@@ -151,7 +151,6 @@ class DashboardWidget extends StatelessWidget {
   }
 
   Widget _buildScoreIndicator(String skill, int score) {
-    // Custom colors for each indicator
     final colorMap = {
       'Technical ability': Colors.pinkAccent,
       'Leadership skills': Colors.orange,
@@ -161,40 +160,41 @@ class DashboardWidget extends StatelessWidget {
     };
 
     double percent = score / 100.0;
-    return Column(
-      children: [
-        CircularPercentIndicator(
-          radius: 60.0,
-          lineWidth: 5.0,
-          percent: percent,
-          center: Text(
-            '$score',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+    return Expanded(
+      child: Column(
+        children: [
+          CircularPercentIndicator(
+            radius: 56.0,
+            lineWidth: 5.0,
+            percent: percent,
+            center: Text(
+              '$score',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
+            progressColor: colorMap[skill] ?? Colors.grey,
+            backgroundColor: Colors.grey[300]!,
+            circularStrokeCap: CircularStrokeCap.round,
+            animation: true,
           ),
-          progressColor: colorMap[skill] ??
-              Colors.grey, // Default color if skill not found
-          backgroundColor: Colors.grey[300]!,
-          circularStrokeCap: CircularStrokeCap.round,
-          animation: true,
-        ),
-        const SizedBox(height: 8),
-        SizedBox(
-          width: 76,
-          height: 40,
-          child: Text(
-            skill,
-            style: const TextStyle(
-              fontSize: 12,
-              color: Colors.black,
+          const SizedBox(height: 8),
+          SizedBox(
+            width: 60,
+            height: 40,
+            child: Text(
+              skill,
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.center,
+              softWrap: true,
             ),
-            textAlign: TextAlign.center,
-            softWrap: true,
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

@@ -235,7 +235,6 @@ class LoginFormState extends State<LoginForm> {
 
       User? user =
           await _auth.signInWithEmailAndPassword(context, email, password);
-
       if (user != null) {
         print("User successfully logged in");
         Provider.of<UserProvider>(context, listen: false)

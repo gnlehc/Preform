@@ -9,4 +9,8 @@ class UserProvider extends ChangeNotifier {
     _userEmail = email;
     notifyListeners();
   }
+
+  String? getUserEmail() {
+    return _userEmail;
+  }
 }

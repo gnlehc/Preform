@@ -34,7 +34,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: Colors.white,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: SvgPicture.asset('lib/images/home_true.svg', color: Colors.grey,),

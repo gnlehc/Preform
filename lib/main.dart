@@ -3,20 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:preform/firebase_options.dart';
-
-import 'package:preform/middleware/auth_middleware.dart';
-import 'package:preform/pages/feedback_page.dart';
-
 import 'package:preform/pages/home.dart';
-import 'package:preform/pages/interview_page.dart';
 import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
 import 'package:preform/pages/splashscreen.dart';
 import 'package:preform/user_auth/user_provider.dart';
-
-import 'package:preform/widgets/bottom_navbar.dart';
-
 import 'package:provider/provider.dart';
+
+import 'middleware/auth_middleware.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +18,7 @@ Future main() async {
   runApp(
     ChangeNotifierProvider(
       create: (context) => UserProvider(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -34,7 +28,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // materialApp -> Get
     return GetMaterialApp(
       initialBinding: BindingsBuilder(() {
@@ -49,24 +42,24 @@ class MyApp extends StatelessWidget {
         ),
       ),
       // ini buat middleware, route harus begini pake Get
-      // getPages: [
-      //   GetPage(
-      //     name: '/',
-      //     page: () => const SplashScreen(),
-      //   ),
-      //   GetPage(
-      //     name: '/home',
-      //     page: () => const Home(),
-      //   ),
-      //   GetPage(
-      //     name: '/login',
-      //     page: () => const LoginForm(),
-      //   ),
-      //   GetPage(
-      //       name: '/signup',
-      //       page: () => const SignUpForm(),
-      //       middlewares: [AuthMiddleware()]),
-      // ],
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => const SplashScreen(),
+        ),
+        GetPage(
+          name: '/home',
+          page: () => const Home(),
+        ),
+        GetPage(
+          name: '/login',
+          page: () => const LoginForm(),
+        ),
+        GetPage(
+            name: '/signup',
+            page: () => const SignUpForm(),
+            middlewares: [AuthMiddleware()]),
+      ],
       debugShowCheckedModeBanner: false,
 
 //     return MaterialApp(
@@ -92,25 +85,6 @@ class MyApp extends StatelessWidget {
 //           '/loadingPage': (context) => LoadingIndicator(),
 //           '/coverLetterFeedbackPage' : (context) => CoverLetterFeedbackPage(),
 //         } // Other page
-//     );
-  }
-}
-
-//       initialRoute: '/',
-//       home: const FeedbackPage(),
-//       theme: ThemeData(
-//         scaffoldBackgroundColor: Colors.white,
-//         textTheme: GoogleFonts.dmSansTextTheme(
-//           Theme.of(context).textTheme,
-//         ),
-//       ),
-//       routes: {
-//         '/login': (context) => const LoginForm(),
-//         '/signup': (context) => const SignUpForm(),
-//         '/dashboard': (context) => const Home()
-//       },
-//       debugShowCheckedModeBanner: false,
-
     );
   }
 }
@@ -133,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SplashScreen(),
       // bottomNavigationBar: Navbar(
       //   currentIndex: _currentIndex,
@@ -142,49 +116,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:preform/firebase_options.dart';
-// import 'package:preform/pages/home.dart';
-
-// import 'package:preform/user_auth/user_provider.dart';
-
-// import 'package:provider/provider.dart';
-
-
-// Future main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-//   runApp(
-//     ChangeNotifierProvider(
-//       create: (context) => UserProvider(),
-//       child: MyApp(),
-//     ),
-//   );
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       // Removed initialRoute to prevent navigation to other screens on startup
-//       home: const Home(), // This sets Home as the first page
-//       theme: ThemeData(
-//         scaffoldBackgroundColor: Colors.white,
-//         textTheme: GoogleFonts.dmSansTextTheme(
-//           Theme.of(context).textTheme,
-//         ),
-//       ),
-//       // Removed the '/login' and '/signup' routes, as they're not needed for initial navigation
-//       debugShowCheckedModeBanner: false,
-//     );
-//   }
-// }
-
-
-

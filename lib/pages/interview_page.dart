@@ -251,7 +251,7 @@ class _InterviewPageState extends State<InterviewPage> {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
@@ -360,7 +360,7 @@ class _InterviewPageState extends State<InterviewPage> {
                   alignment: Alignment.centerLeft,
                   backgroundColor: const Color(0xFFC4084F),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(

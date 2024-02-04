@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(home: LoadingIndicator()));
+  runApp(const MaterialApp(home: LoadingIndicator()));
 }
 
 class LoadingIndicator extends StatefulWidget {
@@ -34,7 +34,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
             ? const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               )
-            : Column(
+            : const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(

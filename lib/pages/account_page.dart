@@ -40,8 +40,8 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: const Text(
+      body: const Center(
+        child: Text(
           "This is the Account page",
           style: TextStyle(
             fontSize: 18,

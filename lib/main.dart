@@ -13,7 +13,6 @@ import 'package:preform/pages/signup.dart';
 import 'package:preform/pages/splashscreen.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:preform/widgets/loading.dart';
-import 'package:preform/widgets/navbar.dart';
 
 import 'package:provider/provider.dart';
 
@@ -70,9 +69,7 @@ class MyApp extends StatelessWidget {
 //         '/dashboard': (context) => const Home()
 //       },
 //       debugShowCheckedModeBanner: false,
-    );
-  }
-}
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import '../widgets/bottom_navbar.dart';
 
-import '../widgets/dashboardwidget.dart'; // Make sure the file name is correct
+import '../widgets/dashboardwidget.dart';
+import '../widgets/dropdown.dart'; // Make sure the file name is correct
 
 void main() {
   runApp(MaterialApp(home: Home()));
@@ -18,6 +20,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // 0 = Home Page
   int _selectedIndex = 0; // Current index of the selected tab
+  final int _score = 90;
 
   // for bottom navbar navigation
   void _onNavBarTap(int index) {

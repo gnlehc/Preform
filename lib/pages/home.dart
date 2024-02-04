@@ -1,40 +1,7 @@
-// import 'package:flutter/material.dart';
-// import '../widgets/bottom_navbar.dart';
-
-// class Home extends StatefulWidget {
-//   const Home({super.key});
-
-//   @override
-//   State<Home> createState() => _HomeState();
-// }
-
-// class _HomeState extends State<Home> {
-//   int _selectedIndex = 0; // Current index of the selected tab
-
-//   void _onNavBarTap(int index) {
-//     setState(() {
-//       _selectedIndex = index;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('My App'),
-//       ),
-//       body: const Center(),
-//       bottomNavigationBar: BottomNavBar(
-//         selectedIndex: _selectedIndex,
-//         onItemSelected: _onNavBarTap,
-//       ),
-//     );
-//   }
-// }
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+
 import '../widgets/bottom_navbar.dart';
-import '../widgets/dropdown.dart';
+
 import '../widgets/dashboardwidget.dart'; // Make sure the file name is correct
 
 void main() {
@@ -51,8 +18,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // 0 = Home Page
   int _selectedIndex = 0; // Current index of the selected tab
-  // Example score to pass to the ScoreIndicator
-  int _score = 90; // This can be any value from 1 to 100
 
   // for bottom navbar navigation
   void _onNavBarTap(int index) {
@@ -78,6 +43,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
     // Calculate the percentage for the circular indicator
     double percent = _score / 100;
 
@@ -203,6 +169,45 @@ class _HomeState extends State<Home> {
             ),
           ),
         ],
+// =======
+//     return Scaffold(
+//       body: SingleChildScrollView(
+//         child: Container(
+//           padding: const EdgeInsets.all(20),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               const SizedBox(
+//                 height: 40,
+//               ),
+//               const Text(
+//                 "Dashboard",
+//                 style: TextStyle(
+//                     color: Color(0xFFFF6C37),
+//                     fontSize: 22,
+//                     fontWeight: FontWeight.bold),
+//               ),
+//               const SizedBox(
+//                 height: 20,
+//               ),
+//               DashboardWidget(
+//                 userName: 'Chelsea Ng',
+//                 latestScore: 'Latest Score',
+//                 interviewType: 'HR Interview',
+//                 company: 'Azure Microsoft',
+//                 role: 'Intern Software Engineering',
+//                 averageScore: '100/100',
+//                 scores: const {
+//                   'Technical ability': 78,
+//                   'Leadership skills': 100,
+//                   'Team skills': 56,
+//                   'Presentation skills': 36,
+//                 },
+//               ),
+//             ],
+//           ),
+//         ),
+// >>>>>>> master
       ),
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,

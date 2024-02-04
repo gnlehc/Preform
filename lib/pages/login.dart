@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:preform/pages/home.dart';
 import 'package:preform/user_auth/firebase_auth_services.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -59,7 +60,6 @@ class LoginFormState extends State<LoginForm> {
                                             fontSize: 26.0,
                                             color: Color(0xFFFF6C37)),
                                       ),
-                                      const SearchBar(),
                                       const SizedBox(height: 10),
                                       const Text(
                                         "Welcome back to Preform!",
@@ -191,7 +191,13 @@ class LoginFormState extends State<LoginForm> {
                                             width: double.infinity,
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                _login(context);
+                                                // _login(context);
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const Home()),
+                                                );
                                               },
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
@@ -234,7 +240,10 @@ class LoginFormState extends State<LoginForm> {
         print("User successfully logged in");
         Provider.of<UserProvider>(context, listen: false)
             .setUserEmail(user.email);
-        Navigator.pushNamed(context, '/');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const Home()),
+        );
       } else {
         print("Error in creating user");
       }

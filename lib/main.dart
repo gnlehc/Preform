@@ -84,7 +84,11 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: '/coverLetterFeedbackPage',
-          page: () => const CoverLetterFeedbackPage(),
+          page: () {
+            // Assuming the feedback text is passed as a string argument
+            final String feedbackText = Get.arguments as String;
+            return CoverLetterFeedbackPage(feedbackText: feedbackText);
+          },
         ),
         // Other routes :
 

@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import '../widgets/percentage_circle.dart';
 
+/*
 void main() {
   runApp(const MaterialApp(home: CoverLetterFeedbackPage()));
 }
 
+ */
 
 class CoverLetterFeedbackPage extends StatefulWidget {
-  const CoverLetterFeedbackPage({Key? key}) : super(key: key);
+  final String feedbackText; // Added to accept feedback text
+
+  const CoverLetterFeedbackPage({Key? key, required this.feedbackText}) : super(key: key);
 
   @override
   State<CoverLetterFeedbackPage> createState() => _CoverLetterFeedbackPageState();
 }
 
 class _CoverLetterFeedbackPageState extends State<CoverLetterFeedbackPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,10 +27,7 @@ class _CoverLetterFeedbackPageState extends State<CoverLetterFeedbackPage> {
             Icons.arrow_back_ios_new,
             color: Color(0xFFFF6C37),
           ),
-          onPressed: () {
-            // Add your action here
-            Navigator.of(context).pushNamed('/coverLetterPage');
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
           "Feedback",
@@ -35,54 +35,53 @@ class _CoverLetterFeedbackPageState extends State<CoverLetterFeedbackPage> {
         ),
         backgroundColor: Colors.white,
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              /*
+              const Text(
                 "Mock Interview: Mid-Senior Software Engineering",
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      PercentageCircle(percentage: 0.76),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        "Overall Score",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Color(0xFFFF6C37),
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  )
+                children: const [
+                  // Your PercentageCircle widget and text
                 ],
               ),
-              SizedBox(
-                height: 20,
+               */
+              const SizedBox(height: 10),
+              const Text(
+                "Feedback for your Resume :",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFFF6C37)),
               ),
-              Text(
-                "Positive Feedback",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              SizedBox(height: 20,),
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xFFFF6C37), width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      widget.feedbackText, // Display the feedback text
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ],
+                )
+
               )
+
             ],
           ),
         ),
       ),
     );
   }
-
-
-
 }

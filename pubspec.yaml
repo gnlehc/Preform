@@ -118,6 +118,7 @@ dependencies:
   http: ^1.1.0
   serious_python: ^0.1.5
   file_picker: ^6.1.1
+  speech_to_text: ^6.6.0
 
 
 
@@ -132,7 +133,7 @@ flutter:
     - lib/images/
     - assets/img/logopreform.png
     - assets/img/filter.png
-        - assets/img/picture1.png # nanti dihapus aja
+       
 
   # To add assets to your application, add an assets section, like this:
   # assets:

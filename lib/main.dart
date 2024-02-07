@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: TtsTesting(),
+      home: SplashScreen(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/',
-          page: () => TtsTesting(),
+          page: () => SplashScreen(),
         ),
         GetPage(
           name: '/home',

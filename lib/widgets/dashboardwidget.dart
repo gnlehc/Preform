@@ -25,11 +25,8 @@ class DashboardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Gradient background colors
-    const gradientStartColor =
-        Colors.redAccent; // replace with start gradient color
-    const gradientEndColor =
-        Color(0xFFCE194B); // replace with end gradient color
+    const gradientStartColor = Colors.redAccent;
+    const gradientEndColor = Color(0xFFCE194B);
 
     return Container(
       decoration: BoxDecoration(
@@ -100,7 +97,7 @@ class DashboardWidget extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 50),
+                      const SizedBox(width: 80),
                       const Text(
                         "100/100",
                         style: TextStyle(
@@ -124,7 +121,7 @@ class DashboardWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
-                        width: 70,
+                        width: 100,
                       ),
                       const Text(
                         "Average Score",
@@ -136,7 +133,6 @@ class DashboardWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 16),
                   // Performance indicators
                   Row(
@@ -157,7 +153,6 @@ class DashboardWidget extends StatelessWidget {
   }
 
   Widget _buildScoreIndicator(String skill, int score) {
-    // Custom colors for each indicator
     final colorMap = {
       'Technical ability': Colors.pinkAccent,
       'Leadership skills': Colors.orange,
@@ -167,40 +162,41 @@ class DashboardWidget extends StatelessWidget {
     };
 
     double percent = score / 100.0;
-    return Column(
-      children: [
-        CircularPercentIndicator(
-          radius: 60.0,
-          lineWidth: 5.0,
-          percent: percent,
-          center: Text(
-            '$score',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+    return Expanded(
+      child: Column(
+        children: [
+          CircularPercentIndicator(
+            radius: 56.0,
+            lineWidth: 5.0,
+            percent: percent,
+            center: Text(
+              '$score',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
+            progressColor: colorMap[skill] ?? Colors.grey,
+            backgroundColor: Colors.grey[300]!,
+            circularStrokeCap: CircularStrokeCap.round,
+            animation: true,
           ),
-          progressColor: colorMap[skill] ??
-              Colors.grey, // Default color if skill not found
-          backgroundColor: Colors.grey[300]!,
-          circularStrokeCap: CircularStrokeCap.round,
-          animation: true,
-        ),
-        const SizedBox(height: 8),
-        SizedBox(
-          width: 76,
-          height: 40,
-          child: Text(
-            skill,
-            style: const TextStyle(
-              fontSize: 12,
-              color: Colors.black,
+          const SizedBox(height: 8),
+          SizedBox(
+            width: 60,
+            height: 40,
+            child: Text(
+              skill,
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.center,
+              softWrap: true,
             ),
-            textAlign: TextAlign.center,
-            softWrap: true,
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

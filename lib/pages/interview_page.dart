@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/bottom_navbar.dart';
+
 class InterviewPage extends StatefulWidget {
   const InterviewPage({Key? key}) : super(key: key);
 
@@ -8,6 +10,33 @@ class InterviewPage extends StatefulWidget {
 }
 
 class _InterviewPageState extends State<InterviewPage> {
+  // 1 = Interview Page
+  int _selectedIndex = 1;
+
+  // for bottom navbar navigation
+  void _onNavBarTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.pushNamed(context, '/');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/interviewPage');
+        break;
+      case 2:
+        Navigator.pushNamed(context, '/coverLetterPage');
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/accountPage');
+        break;
+    }
+  }
+
+
+
   late String? _chosenValue = 'Software Engineer';
   late String? _industryValue = 'Cyber Security';
   final List<String> items = [
@@ -353,6 +382,10 @@ class _InterviewPageState extends State<InterviewPage> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemSelected: _onNavBarTap,
       ),
     );
   }

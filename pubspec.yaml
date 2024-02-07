@@ -123,6 +123,7 @@ flutter:
   assets:
     - lib/images/ # Assuming all your images are in this directory.
     - assets/img/logopreform.png # Only needed if this path is different from the above.
+    - assets/img/picture1.png # nanti dihapus aja
 
 
   # Include custom fonts here (if any).

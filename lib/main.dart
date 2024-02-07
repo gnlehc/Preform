@@ -2,13 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:preform/firebase_options.dart';
+import 'package:preform/pages/splashscreen.dart';
+import 'package:preform/user_auth/user_provider.dart';
+import 'package:provider/provider.dart';
+
 import 'package:preform/pages/feedback_page.dart';
 import 'package:preform/pages/home.dart';
 import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
-import 'package:preform/pages/splashscreen.dart';
-import 'package:preform/user_auth/user_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:preform/pages/record.dart'; 
+
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
-      home: const FeedbackPage(),
+      home: FeedbackPage(), //edit
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -34,7 +37,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginForm(),
         '/signup': (context) => const SignUpForm(),
-        '/dashboard': (context) => const Home()
+        '/dashboard': (context) => const Home(),
+        '/record' : ( context ) => RecordPage(),
+        '/feedback_page' : (context) => FeedbackPage(),
       },
       debugShowCheckedModeBanner: false,
     );

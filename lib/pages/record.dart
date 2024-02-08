@@ -6,6 +6,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:text_to_speech/text_to_speech.dart';
+import 'package:video_player/video_player.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:http/http.dart' as http;
 
 import 'feedback_page.dart';
@@ -155,6 +157,8 @@ void _setupTts() {
 
     // Now, use the obtained text for speech
     await tts.speak(text); // Speak out the text
+    _controller?.seekTo(Duration.zero);
+    _controller?.play(); // Play the video when TTS starts
   }
 
   bool hasSpoken = false;

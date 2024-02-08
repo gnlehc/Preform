@@ -48,7 +48,6 @@ class _TtsTestingState extends State<TtsTesting> {
 
     final response = await http.get(Uri.parse('$serverUrl$inputText'));
     if (response.statusCode == 202) {
-      // Job accepted, retrieve job_id from response
       final Map<String, dynamic> jsonResponse = json.decode(response.body);
       final String jobId = jsonResponse['job_id'];
       print('Job accepted with ID: $jobId');

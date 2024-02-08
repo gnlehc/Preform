@@ -231,7 +231,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
         Navigator.pushNamed(context, '/');
         break;
       case 1:
-        Navigator.pushNamed(context, '/interviewPage');
+        Navigator.pushNamed(context, '/exploreInterviewPage');
         break;
       case 2:
         Navigator.pushNamed(context, '/coverLetterPage');

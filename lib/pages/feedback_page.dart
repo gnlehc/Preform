@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:preform/pages/home.dart';
 import 'package:preform/widgets/bottom_navbar.dart';
 import 'package:preform/widgets/dropdown.dart';
 
@@ -98,7 +99,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
             Icons.arrow_back_ios_new,
             color: Color(0xFFFF6C37),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Home()),
+            );
+          },
         ),
         title: const Text(
           "Feedback",

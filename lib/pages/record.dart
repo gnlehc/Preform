@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:text_to_speech/text_to_speech.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -14,40 +15,47 @@ class RecordPage extends StatefulWidget {
 }
 
 class RecordPageState extends State<RecordPage> {
-  final speechToText = SpeechToText();
-  String lastWords = "";
+  TextToSpeech tts = TextToSpeech();
+  SpeechToText _speechToText = SpeechToText();
+  String _lastWords = "";
 
   @override
   void initState() {
     super.initState();
-    initSpeechToText();
+    _initSpeechToText();
   }
 
-  Future<void> initSpeechToText() async {
-    await speechToText.initialize();
+  void _initSpeechToText() async {
+    await _speechToText.initialize();
     setState(() {});
   }
 
-  Future<void> startListening() async {
-    await speechToText.listen(onResult: onSpeechResult);
+  void _startListening() async {
+    // await speechToText.initialize();
+    await _speechToText.listen(onResult: _onSpeechResult);
+
     setState(() {});
   }
 
-  Future<void> stopListening() async {
-    await speechToText.stop();
+
+  Future<void> _stopListening() async {
+    await _speechToText.stop();
     setState(() {});
   }
 
-  void onSpeechResult(SpeechRecognitionResult result) {
+//speech to text
+  void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
-      lastWords = result.recognizedWords;
+      _lastWords = result.recognizedWords;
+      // print("This is the result $lastWords");
     });
   }
 
   @override
   void dispose() {
     super.dispose();
-    speechToText.stop();
+    _speechToText.stop();
+    tts.stop();
   }
 
   @override
@@ -178,19 +186,35 @@ class RecordPageState extends State<RecordPage> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Color(0xFFFB724C))),
             // BorderRadius()
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'I am from Jakarta, Indonesia..',
-                      hintStyle: TextStyle(fontSize: 14),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                ),
-              ],
+            child: Container(
+              padding: EdgeInsets.all(16),
+              child: Text(
+                // If listening is active show the recognized words
+                _speechToText.isListening
+                    ? '$_lastWords'
+                    // If listening isn't active but could be tell the user
+                    // how to start it, otherwise indicate that speech
+                    // recognition is not yet ready or not supported on
+                    // the target device
+                    : _speechToText.isNotListening
+                        ? 'Tap the microphone to start listening...'
+                        : 'Speech not available',
+              ),
             ),
+
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: TextField(
+            //         decoration: InputDecoration(
+            //           hintText: 'I am from Jakarta, Indonesia..',
+            //           hintStyle: TextStyle(fontSize: 14),
+            //           border: InputBorder.none,
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ),
           Container(
             padding: EdgeInsets.only(bottom: 10.0),
@@ -213,14 +237,24 @@ class RecordPageState extends State<RecordPage> {
                 color: Colors.white,
               ),
               onPressed: () async {
-                // Implement microphone tap functionality
-                if (await speechToText.hasPermission &&
-                    speechToText.isNotListening) {
-                  await startListening();
-                } else if (speechToText.isListening) {
-                  await stopListening();
+
+                // Text to speech
+                String language = 'en-US';
+                tts.setLanguage(language);
+                String text = "Hello World Good morning!";
+                await tts.speak(text);
+
+                // listen Speech to text 
+                if (await _speechToText.hasPermission &&
+                    _speechToText.isNotListening) {
+                  _startListening();
+                  print("Is listening");
+                } else if (_speechToText.isListening) {
+                  _stopListening();
+                  print("stop listening");
                 } else {
-                  initSpeechToText();
+                  _initSpeechToText();
+                  print("init speech");
                 }
               },
             ),

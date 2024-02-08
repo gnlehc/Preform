@@ -149,7 +149,10 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                         Flexible(
                             child: Text("Top 10 HR Interview Questions",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 24)))
+                                    fontWeight: FontWeight.bold, fontSize: 24
+                                )
+                            )
+                        )
                       ],
                     ),
                     Divider(height: 10, color: Colors.transparent),

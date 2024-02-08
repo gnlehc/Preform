@@ -11,6 +11,7 @@ import 'package:preform/pages/interview_page.dart';
 import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
 import 'package:preform/pages/splashscreen.dart';
+import 'package:preform/pages/record.dart';
 import 'package:preform/pages/tts_testing.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:preform/widgets/loading.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: SplashScreen(),
+      home: RecordPage(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -64,8 +65,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/signup',
             page: () => const SignUpForm(),
-            middlewares: [AuthMiddleware()]
-        ),
+            middlewares: [AuthMiddleware()]),
         GetPage(
           name: '/interviewPage',
           page: () => const InterviewPage(),
@@ -91,10 +91,8 @@ class MyApp extends StatelessWidget {
           },
         ),
         // Other routes :
-
       ],
       debugShowCheckedModeBanner: false,
-
     );
   }
 }

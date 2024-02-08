@@ -6,6 +6,7 @@ import 'package:preform/firebase_options.dart';
 import 'package:preform/pages/account_page.dart';
 import 'package:preform/pages/cover_letter_feedback_page.dart';
 import 'package:preform/pages/cover_letter_page.dart';
+import 'package:preform/pages/explore_interview_page.dart';
 import 'package:preform/pages/home.dart';
 import 'package:preform/pages/interview_page.dart';
 import 'package:preform/pages/login.dart';
@@ -14,6 +15,7 @@ import 'package:preform/pages/splashscreen.dart';
 import 'package:preform/pages/record.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:preform/widgets/loading.dart';
+import 'package:preform/widgets/text_to_speech.dart';
 import 'package:provider/provider.dart';
 
 import 'middleware/auth_middleware.dart';
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: RecordPage(),
+      home: SplashScreen(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -66,9 +68,10 @@ class MyApp extends StatelessWidget {
             page: () => const SignUpForm(),
             middlewares: [AuthMiddleware()]),
         GetPage(
-          name: '/interviewPage',
-          page: () => const InterviewPage(),
+          name: '/exploreInterviewPage',
+          page: () => const ExploreInterviewPage(),
         ),
+        GetPage(name: '/interviewPage', page: () => const InterviewPage()),
         GetPage(
           name: '/coverLetterPage',
           page: () => const CoverLetterPage(),

@@ -97,11 +97,11 @@ class DashboardWidget extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 80),
+                      const SizedBox(width: 35),
                       const Text(
                         "100/100",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
@@ -121,7 +121,7 @@ class DashboardWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
-                        width: 100,
+                        width: 55,
                       ),
                       const Text(
                         "Average Score",
@@ -156,8 +156,8 @@ class DashboardWidget extends StatelessWidget {
     final colorMap = {
       'Technical ability': Colors.pinkAccent,
       'Leadership skills': Colors.orange,
-      'Team skills': Colors.amber,
-      'Presentation skills': Colors.green,
+      'Teamwork skills': Colors.amber,
+      // 'Presentation skills': Colors.green,
       'Organizational skills': Colors.purple,
     };
 

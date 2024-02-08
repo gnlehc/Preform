@@ -29,10 +29,7 @@ class SearchBarState extends State<SearchBarInterview> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
+    return Column(
           children: [
             Row(
               children: [
@@ -45,8 +42,8 @@ class SearchBarState extends State<SearchBarInterview> {
             ),
             if (isFilterClicked) _buildFilteredList(),
           ],
-        ),
-      ),
+        
+      
     );
   }
 

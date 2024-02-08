@@ -29,9 +29,8 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
     return Stack(alignment: const Alignment(0.6, 0.6), children: [
       // pake stack supaya iconnya ada di atas cardnya
       // Add icon nya disini
-
       Card(
-          margin: const EdgeInsets.all(25),
+          // margin: const EdgeInsets.all(25),
           elevation: 0,
           shape: const RoundedRectangleBorder(
             side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
@@ -39,7 +38,7 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
           ),
           child: Container(
             padding: const EdgeInsets.all(16.0),
-            width: 300,
+            width: 200,
             // borderRadius: BorderRadius.circular(10.0) ,
             child: Column(
               mainAxisSize: MainAxisSize.min,

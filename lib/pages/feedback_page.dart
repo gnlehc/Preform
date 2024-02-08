@@ -59,8 +59,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
       final response = await http.post(uri, headers: headers, body: requestBody);
       if (response.statusCode == 200) {
         final responseBody = json.decode(response.body);
-        // Extracting the text from the response
-        return responseBody['choices'][0]['text'].trim();
+        // Assuming the response format for chat completions, adjust as necessary
+        return responseBody['choices'][0]['message']['content'].trim();
       } else {
         throw Exception('Failed to get response from OpenAI: ${response.body}');
       }
@@ -77,7 +77,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
       prompt += "${message['role']}: ${message['content']}\n";
     }
     // lanjutan prompt
-    prompt += "Generate feedback and analysis based on interview conversations above";
+    prompt += "Generate feedback and analysis based on interviewee answers in the interview sessions before";
     return prompt;
   }
 
@@ -88,14 +88,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
     String generatedFeedback = await sendMessageToGPT(widget.conversationData);
     setState(() {
       interviewFeedback = generatedFeedback;
-    });
-  }
-
-
-  int _selectedIndex = 0;
-  void _onNavBarTap(int index) {
-    setState(() {
-      _selectedIndex = index;
     });
   }
 
@@ -192,6 +184,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
       body: interviewFeedback.isEmpty
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
+
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(interviewFeedback),
@@ -320,10 +313,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
           ),
         ),
         */
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemSelected: _onNavBarTap,
-      ),
     );
   }
 }

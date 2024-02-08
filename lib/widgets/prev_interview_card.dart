@@ -119,7 +119,7 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
                     decoration: BoxDecoration(
                       color: const Color(0xFFFF6C37),
                       borderRadius: BorderRadius.circular(
-                          4.0), // Optional: Add borderRadius
+                          200), // Optional: Add borderRadius
                     ),
                     child: TextButton(
                       child: const Text('Try Again',

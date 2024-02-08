@@ -28,6 +28,7 @@ class RecordPage extends StatefulWidget {
 class RecordPageState extends State<RecordPage> {
   FlutterTts flutterTts = FlutterTts();
   TextToSpeech tts = TextToSpeech();
+  bool _isSpeaking = false;
 
   SpeechToText _speechToText = SpeechToText();
   bool speechEnabled = false;
@@ -76,13 +77,14 @@ class RecordPageState extends State<RecordPage> {
 
 void _setupTts() {
   flutterTts.setStartHandler(() {
-    // No need to change video playback here; start handler just starts TTS
+    _isSpeaking = true; // TTS starts speaking
   });
 
   flutterTts.setCompletionHandler(() {
     // Stop the video when TTS completes speaking
     setState(() {
-      _controller?.pause(); // Optionally seek to a certain position if needed
+      _isSpeaking = false; // TTS has finished speaking
+      _controller?.pause(); 
     });
   });
 }
@@ -150,6 +152,7 @@ void _setupTts() {
 
   // Method to convert text to speech for GPT
   Future<void> _textToSpeechForGPT(String text) async {
+    if (_speechToText.isListening) return;
     // Assuming 'setLanguage' and 'speak' methods are synchronous. If they are not, you would need to await them as well.
     String language = 'en-US';
     tts.setLanguage(language); // Set the language for speech
@@ -197,12 +200,6 @@ void _setupTts() {
             ),
           ],
         ),
-        actions: [
-          Icon(Icons.phone),
-          SizedBox(width: 10),
-          Icon(Icons.videocam),
-          SizedBox(width: 10),
-        ],
       ),
       body: Column(
         
@@ -235,7 +232,8 @@ void _setupTts() {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 20.0),
               decoration: BoxDecoration(
                 // Specify the border for the Container
                 border: Border.all(
@@ -281,60 +279,16 @@ void _setupTts() {
               ),
             ),
           ),
-          Divider(height: 10, color: Colors.transparent),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
-            margin: EdgeInsets.only(
-              left: 10.0,
-              right: 10.0,
-            ), // Add margin to give space around the container
-            decoration: BoxDecoration(
-              color: Color(0xFFFFE9E0),
-              // This is a light orange color, you may need to adjust the color to match exactly
-              borderRadius: BorderRadius.circular(20.0), // Rounded corners
-            ),
-            child: IntrinsicHeight(
-              // Ensures the row's height only takes the space it needs
-              child: Row(
-                mainAxisSize: MainAxisSize
-                    .min, // Use the minimum space that Row children need
-                children: [
-                  Icon(Icons.pause,
-                      color: Color(0xFFFB724C)), // Pause icon color adjusted
-                  SizedBox(width: 8.0), // Spacing between the icon and text
-
-                  Text(
-                    'Timer',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-
-                      color: Color(0xFFFB724C), // Text color adjusted
-                    ),
-                  ),
-                  SizedBox(
-                      width:
-                          8.0), // Spacing between text "Timer" and the timer value
-
-                  Text(
-                    '01:53',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-
-                      color: Color(0xFFFB724C), // Text color adjusted
-                    ),
-                  ),
-                  Spacer(), // This will push the icon to the end of the Row
-                  Icon(
-                    Icons.timer, // Icon data
-                    color: Color(0xFFFB724C), // Icon color
-                  )
-                ],
-              ),
-            ),
-          ),
+          // Divider(height: 10, color: Colors.transparent),
+          // Container(
+          //   padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+          //   margin: EdgeInsets.only(
+          //     left: 10.0,
+          //     right: 10.0,
+          //   ), // Add margin to give space around the container
+          // ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-
             margin: EdgeInsets.only(
               top: 10,
               left: 10.0,
@@ -399,20 +353,13 @@ void _setupTts() {
                     borderRadius: BorderRadius.circular(50)),
                 child: IconButton(
                     icon: Icon(
-                      Icons.mic,
+                       _speechToText.isListening ? Icons.mic : Icons.mic_off,
                       size: 35,
                       color: Colors.white,
                     ),
                     onPressed: () async {
-                      /*
-
-                // Text to speech
-                String language = 'en-US';
-                tts.setLanguage(language);
-                String text = "Hello World Good morning!";
-                await tts.speak(text);
-*/
                       // listen Speech to text
+                      if (_isSpeaking) return;
                       if (await _speechToText.hasPermission &&
                           _speechToText.isNotListening) {
                         _startListening();

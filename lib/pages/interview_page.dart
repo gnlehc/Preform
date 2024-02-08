@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../widgets/bottom_navbar.dart';
 
@@ -34,8 +35,6 @@ class _InterviewPageState extends State<InterviewPage> {
         break;
     }
   }
-
-
 
   late String? _chosenValue = 'Software Engineer';
   late String? _industryValue = 'Cyber Security';
@@ -354,7 +353,9 @@ class _InterviewPageState extends State<InterviewPage> {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed("/recordPage");
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 35),
                   alignment: Alignment.centerLeft,

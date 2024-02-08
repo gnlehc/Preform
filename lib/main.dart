@@ -6,6 +6,7 @@ import 'package:preform/firebase_options.dart';
 import 'package:preform/pages/account_page.dart';
 import 'package:preform/pages/cover_letter_feedback_page.dart';
 import 'package:preform/pages/cover_letter_page.dart';
+import 'package:preform/pages/feedback_page.dart';
 import 'package:preform/pages/home.dart';
 import 'package:preform/pages/interview_page.dart';
 import 'package:preform/pages/login.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: RecordPage(),
+      home: Home(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -82,11 +83,23 @@ class MyApp extends StatelessWidget {
           page: () => const LoadingIndicator(),
         ),
         GetPage(
+          name: '/recordPage',
+          page: () => RecordPage(),
+        ),
+        GetPage(
           name: '/coverLetterFeedbackPage',
           page: () {
             // Assuming the feedback text is passed as a string argument
             final String feedbackText = Get.arguments as String;
             return CoverLetterFeedbackPage(feedbackText: feedbackText);
+          },
+        ),
+        GetPage(
+          name: '/feedbackPage',
+          page: () {
+            // Assuming the feedback text is passed as a string argument
+            // final String interviewFeedbackText = Get.arguments as String;
+            return FeedbackPage(conversationData: []);
           },
         ),
         // Other routes :

@@ -6,6 +6,7 @@ import 'package:preform/firebase_options.dart';
 import 'package:preform/pages/account_page.dart';
 import 'package:preform/pages/cover_letter_feedback_page.dart';
 import 'package:preform/pages/cover_letter_page.dart';
+import 'package:preform/pages/explore_interview_page.dart';
 import 'package:preform/pages/feedback_page.dart';
 import 'package:preform/pages/home.dart';
 import 'package:preform/pages/interview_page.dart';
@@ -81,6 +82,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/loadingPage',
           page: () => const LoadingIndicator(),
+        ),
+        GetPage(
+          name: '/exploreInterviewPage',
+          page: () => const ExploreInterviewPage(),
         ),
         GetPage(
           name: '/recordPage',

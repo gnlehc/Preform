@@ -380,6 +380,7 @@ class _InterviewPageState extends State<InterviewPage> {
                   ],
                 ),
               ),
+              Divider(height: 10, color: Colors.transparent),
             ],
           ),
         ),

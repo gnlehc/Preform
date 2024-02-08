@@ -117,6 +117,11 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
                 Column(children: <Widget>[
                   Container(
                     width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFF6C37),
+                      borderRadius: BorderRadius.circular(
+                          4.0), // Optional: Add borderRadius
+                    ),
                     child: TextButton(
                       child: const Text('Try Again',
                           style: TextStyle(
@@ -125,11 +130,6 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
                       onPressed: () {
                         /* ... */
                       },
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFF6C37),
-                      borderRadius: BorderRadius.circular(
-                          4.0), // Optional: Add borderRadius
                     ),
                   ),
                 ])

@@ -187,7 +187,7 @@ class LoginFormState extends State<LoginForm> {
                                             ],
                                           ),
                                           const SizedBox(height: 16),
-                                          Container(
+                                          SizedBox(
                                             width: double.infinity,
                                             child: ElevatedButton(
                                               onPressed: () {

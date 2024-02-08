@@ -4,19 +4,21 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: RecordPage(),
   ));
 }
 
 class RecordPage extends StatefulWidget {
+  const RecordPage({super.key});
+
   @override
   RecordPageState createState() => RecordPageState();
 }
 
 class RecordPageState extends State<RecordPage> {
   TextToSpeech tts = TextToSpeech();
-  SpeechToText _speechToText = SpeechToText();
+  final SpeechToText _speechToText = SpeechToText();
   String _lastWords = "";
 
   @override
@@ -71,7 +73,7 @@ class RecordPageState extends State<RecordPage> {
         ),
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min, // Use min size for the column
+          mainAxisSize: MainAxisSize.min,
           children: <Text>[
             Text(
               'HR : Microsoft Azure',
@@ -80,13 +82,12 @@ class RecordPageState extends State<RecordPage> {
                   fontSize: 22,
                   color: Color(0xFFFF6C37)),
             ),
-            // You can add more Text widgets here
             Text(
-              'Intern Software Engineering', // Additional text example
+              'Intern Software Engineering',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
-                  color: Colors.black), // Example style
+                  color: Colors.black),
             ),
           ],
         ),
@@ -117,8 +118,7 @@ class RecordPageState extends State<RecordPage> {
                       color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 subtitle: Padding(
-                  padding: EdgeInsets.only(
-                      top: 4.0), // Reduce the top padding if necessary
+                  padding: EdgeInsets.only(top: 4.0),
                   child: Text(
                     'What is your biggest take-away in your previous job?',
                     style: TextStyle(color: Colors.black),
@@ -128,46 +128,41 @@ class RecordPageState extends State<RecordPage> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
             margin: const EdgeInsets.only(
               left: 10.0,
               right: 10.0,
-            ), // Add margin to give space around the container
+            ),
             decoration: BoxDecoration(
-              color: const Color(
-                  0xFFFFE9E0), // This is a light orange color, you may need to adjust the color to match exactly
+              color: const Color(0xFFFFE9E0),
               borderRadius: BorderRadius.circular(20.0), // Rounded corners
             ),
             child: const IntrinsicHeight(
-              // Ensures the row's height only takes the space it needs
               child: Row(
-                mainAxisSize: MainAxisSize
-                    .min, // Use the minimum space that Row children need
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.pause,
-                      color: Color(0xFFFB724C)), // Pause icon color adjusted
-                  SizedBox(width: 8.0), // Spacing between the icon and text
+                  Icon(Icons.pause, color: Color(0xFFFB724C)),
+                  SizedBox(width: 8.0),
                   Text(
                     'Timer',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFFB724C), // Text color adjusted
+                      color: Color(0xFFFB724C),
                     ),
                   ),
-                  SizedBox(
-                      width:
-                          8.0), // Spacing between text "Timer" and the timer value
+                  SizedBox(width: 8.0),
                   Text(
                     '01:53',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFFB724C), // Text color adjusted
+                      color: Color(0xFFFB724C),
                     ),
                   ),
-                  Spacer(), // This will push the icon to the end of the Row
+                  Spacer(),
                   Icon(
-                    Icons.timer, // Icon data
-                    color: Color(0xFFFB724C), // Icon color
+                    Icons.timer,
+                    color: Color(0xFFFB724C),
                   )
                 ],
               ),
@@ -188,32 +183,13 @@ class RecordPageState extends State<RecordPage> {
             child: Container(
               padding: const EdgeInsets.all(16),
               child: Text(
-                // If listening is active show the recognized words
                 _speechToText.isListening
                     ? _lastWords
-                    // If listening isn't active but could be tell the user
-                    // how to start it, otherwise indicate that speech
-                    // recognition is not yet ready or not supported on
-                    // the target device
                     : _speechToText.isNotListening
                         ? 'Tap the microphone to start listening...'
                         : 'Speech not available',
               ),
             ),
-
-            // Row(
-            //   children: [
-            //     Expanded(
-            //       child: TextField(
-            //         decoration: InputDecoration(
-            //           hintText: 'I am from Jakarta, Indonesia..',
-            //           hintStyle: TextStyle(fontSize: 14),
-            //           border: InputBorder.none,
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
           ),
           Container(
             padding: const EdgeInsets.only(bottom: 10.0),

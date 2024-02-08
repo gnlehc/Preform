@@ -45,8 +45,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    int _score = 90;
-    double percent = _score / 100;
+    int score = 90;
+    double percent = score / 100;
     Color progressColor =
         Color.lerp(const Color(0xFFCE194B), const Color(0xFFFF6C37), percent)!;
     final List<Map<String, String>> qaPairs = [
@@ -107,14 +107,14 @@ class _HomeState extends State<Home> {
           Expanded(
             child: ListView(
               children: [
-                DashboardWidget(
+                const DashboardWidget(
                   userName: 'Chelsea Ng',
                   latestScore: 'Latest Score',
                   interviewType: 'HR Interview',
                   company: 'Azure Microsoft',
                   role: 'Intern Software Engineering',
                   averageScore: '100/100',
-                  scores: const {
+                  scores: {
                     'Technical ability': 78,
                     'Leadership skills': 100,
                     'Team skills': 56,
@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
                     animation: true,
                     percent: percent,
                     center: Text(
-                      _score.toString(),
+                      score.toString(),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0,

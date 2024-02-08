@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/percentage_circle.dart';
 
 /*
 void main() {
@@ -60,11 +59,11 @@ class _CoverLetterFeedbackPageState extends State<CoverLetterFeedbackPage> {
                 "Feedback for your Resume :",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFFFF6C37)),
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xFFFF6C37), width: 2),
+                  border: Border.all(color: const Color(0xFFFF6C37), width: 2),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Column(

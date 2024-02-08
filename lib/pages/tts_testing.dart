@@ -3,10 +3,11 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 
 class TtsTesting extends StatefulWidget {
+  const TtsTesting({super.key});
+
   @override
   _TtsTestingState createState() => _TtsTestingState();
 }
@@ -22,11 +23,11 @@ class _TtsTestingState extends State<TtsTesting> {
       children: [
         TextField(
           controller: _textController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Enter Text',
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         ElevatedButton(
           onPressed: () async {
             String inputText = _textController.text;
@@ -37,7 +38,7 @@ class _TtsTestingState extends State<TtsTesting> {
               print('Please enter text before pressing the button.');
             }
           },
-          child: Text('Call Flask Endpoint'),
+          child: const Text('Call Flask Endpoint'),
         ),
       ],
     ));

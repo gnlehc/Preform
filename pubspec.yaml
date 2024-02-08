@@ -125,6 +125,10 @@ dependencies:
   flutter_tts: ^3.8.5
 
 
+  speech_to_text: ^6.6.0
+  text_to_speech: ^0.2.3
+  flutter_tts: ^3.8.5
+
 
 dev_dependencies:
   flutter_test:

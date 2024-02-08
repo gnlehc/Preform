@@ -12,7 +12,7 @@ class DashboardWidget extends StatelessWidget {
   final String averageScore;
   final Map<String, int> scores;
 
-  DashboardWidget({
+  const DashboardWidget({
     Key? key,
     required this.userName,
     required this.latestScore,

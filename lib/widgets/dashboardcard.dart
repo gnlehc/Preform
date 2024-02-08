@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
       home: DashboardCard(
     progressValue: 0.1,
     numberPercentage: 10,
@@ -33,12 +33,12 @@ class _DashboardCardState extends State<DashboardCard> {
       Card(
           margin: const EdgeInsets.all(25),
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: const Color(0xFFFF6C37)),
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
+          shape: const RoundedRectangleBorder(
+            side: BorderSide(color: Color(0xFFFF6C37)),
+            borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             width: 300,
             // borderRadius: BorderRadius.circular(10.0) ,
             child: Column(
@@ -47,10 +47,10 @@ class _DashboardCardState extends State<DashboardCard> {
                 Row(
                   children: <Widget>[
                     SvgPicture.asset("lib/images/data_chart_icon.svg"),
-                    SizedBox(width: 13),
+                    const SizedBox(width: 13),
                   ],
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 10.0),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -60,8 +60,8 @@ class _DashboardCardState extends State<DashboardCard> {
                     ),
                   ),
                 ),
-                SizedBox(height: 4),
-                Padding(
+                const SizedBox(height: 4),
+                const Padding(
                   padding: EdgeInsets.only(bottom: 0),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -71,9 +71,9 @@ class _DashboardCardState extends State<DashboardCard> {
                     ),
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Padding(
-                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
@@ -91,45 +91,45 @@ class _DashboardCardState extends State<DashboardCard> {
                       minHeight: 10,
                       backgroundColor: Colors.grey[300],
                       valueColor:
-                          AlwaysStoppedAnimation<Color>(Color(0xFFFF6C37)),
+                          const AlwaysStoppedAnimation<Color>(Color(0xFFFF6C37)),
                     ),
                   ),
                   )
 
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 16.0),
+                  padding: const EdgeInsets.only(bottom: 16.0),
                   // Adjust the left margin as needed
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Score: ",
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(widget.numberPercentage.toString(),
                           style: const TextStyle(fontWeight: FontWeight.bold)),
-                      Text("/100",
-                          style: const TextStyle(fontWeight: FontWeight.bold))
+                      const Text("/100",
+                          style: TextStyle(fontWeight: FontWeight.bold))
                     ],
                   ),
                 ),
                 Column(children: <Widget>[
                   Container(
                     width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFF6C37),
+                      borderRadius: BorderRadius.circular(
+                          4.0), // Optional: Add borderRadius
+                    ),
                     child: TextButton(
-                      child: Text('Try Again',
-                          style: const TextStyle(
+                      child: const Text('Try Again',
+                          style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       onPressed: () {
                         /* ... */
                       },
-                    ),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF6C37),
-                      borderRadius: BorderRadius.circular(
-                          4.0), // Optional: Add borderRadius
                     ),
                   ),
                 ])

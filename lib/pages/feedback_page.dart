@@ -1,21 +1,93 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:preform/pages/home.dart';
 import 'package:preform/widgets/bottom_navbar.dart';
 import 'package:preform/widgets/dropdown.dart';
+import 'package:http/http.dart' as http;
 
 class FeedbackPage extends StatefulWidget {
-  const FeedbackPage({super.key});
+  final List<Map<String, dynamic>> conversationData;
+
+  const FeedbackPage({Key? key, required this.conversationData}) : super(key: key);
 
   @override
-  State<FeedbackPage> createState() => _FeedbackPageState();
+  _FeedbackPageState createState() => _FeedbackPageState();
 }
 
+
 class _FeedbackPageState extends State<FeedbackPage> {
-  int _selectedIndex = 0;
-  void _onNavBarTap(int index) {
+  String interviewFeedback = "";
+
+  @override
+  void initState() {
+    super.initState();
+    generateFeedback();
+  }
+
+  // untuk mengirim message ke gpt
+  Future<String> sendMessageToGPT(dynamic conversationData) async {
+    const String apiKey = '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';
+    final uri = Uri.parse('https://api.openai.com/v1/chat/completions');
+
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $apiKey',
+    };
+
+    // Prepare your conversation data for the API request.
+    // This is an example of how you might format your conversation data.
+    // Adjust this according to the structure of your conversationData.
+    final requestBody = json.encode({
+      'model': 'gpt-3.5-turbo', // or another model like "gpt-3.5-turbo", check OpenAI documentation for available models
+      "messages": [
+        {
+          "role": "system",
+          "content":   _formatPrompt(conversationData) // Format your prompt based on conversation data
+        },
+        {"role": "user", "content": " "}
+      ],
+      'temperature': 0.7,
+      'max_tokens': 300,
+      'top_p': 1.0,
+      'frequency_penalty': 0.0,
+      'presence_penalty': 0.0,
+    });
+
+    try {
+      final response = await http.post(uri, headers: headers, body: requestBody);
+      if (response.statusCode == 200) {
+        final responseBody = json.decode(response.body);
+        // Assuming the response format for chat completions, adjust as necessary
+        return responseBody['choices'][0]['message']['content'].trim();
+      } else {
+        throw Exception('Failed to get response from OpenAI: ${response.body}');
+      }
+    } catch (e) {
+      throw Exception('Failed to send message to GPT: $e');
+    }
+  }
+
+  String _formatPrompt(dynamic conversationData) {
+    // awalan prompt
+    String prompt = "Given the conversation: \n";
+    // Assuming conversationData is a List of Map objects or similar
+    for (var message in conversationData) {
+      prompt += "${message['role']}: ${message['content']}\n";
+    }
+    // lanjutan prompt
+    prompt += "Generate feedback and analysis based on interviewee answers in the interview sessions before";
+    return prompt;
+  }
+
+  // untuk generate feedback terkait interview
+  void generateFeedback() async {
+    // Use the conversation data to generate feedback using GPT
+    // This is a placeholder for your logic to communicate with GPT
+    String generatedFeedback = await sendMessageToGPT(widget.conversationData);
     setState(() {
-      _selectedIndex = index;
+      interviewFeedback = generatedFeedback;
     });
   }
 
@@ -100,10 +172,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             color: Color(0xFFFF6C37),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Home()),
-            );
+            Get.toNamed("/interviewPage");
           },
         ),
         title: const Text(
@@ -112,7 +181,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
         ),
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
+      body: interviewFeedback.isEmpty
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(interviewFeedback),
+        ),
+      ),
+
+        // di-comment dulu karna gua mau bikin ui baru yang ai generated
+        /*
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -232,11 +312,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavBar(
-        selectedIndex: _selectedIndex,
-        onItemSelected: _onNavBarTap,
-      ),
+        */
     );
   }
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:preform/user_auth/user_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../widgets/bottom_navbar.dart';
+
+void main() {
+  runApp(const MaterialApp(home: AccountPage()));
+}
 
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
+
   // 2 = Account Page
   int _selectedIndex = 3;
 
@@ -35,29 +39,57 @@ class _AccountPageState extends State<AccountPage> {
         Navigator.pushNamed(context, '/accountPage');
         break;
     }
+
+  }
+
+  String name = 'Chelsea Ng';
+  String email = 'chelsea.ng@gmail.com';
+
+  void _editProfile() {
+    // Placeholder for edit profile logic
+    // This is where you might open an edit profile page or show a modal
+    print('Edit profile tapped');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(50.0),
-        child: const Center(
-            child: Column(
-          children: [
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
             CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 24,
-              child: Icon(Icons.person),
+              radius: 50,
+              backgroundImage: AssetImage('lib/images/chelsea.jpeg'),
             ),
-            SizedBox(height: 12),
-            Text("Chelsea Ng",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            SizedBox(height: 20),
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             SizedBox(height: 10),
-            Text("chelseang@gmail.com",
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal))
+            Text(
+              email,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey,
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: const Color(0xFFFF6C37), // This is the background color
+                onPrimary: Colors.white, // This is the color of the text and icon
+              ),
+              onPressed: _editProfile,
+              child: Text('Edit Profile'),
+            ),
           ],
-        )),
+        ),
       ),
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
@@ -65,4 +97,7 @@ class _AccountPageState extends State<AccountPage> {
       ),
     );
   }
+
+
+
 }

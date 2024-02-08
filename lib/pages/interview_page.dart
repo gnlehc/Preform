@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:preform/pages/explore_interview_page.dart';
+import 'package:get/get.dart';
 
 import '../widgets/bottom_navbar.dart';
 
@@ -54,27 +54,11 @@ class _InterviewPageState extends State<InterviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-            color: Color(0xFFFF6C37),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const ExploreInterviewPage()),
-            );
-          },
-        ),
-      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.fromLTRB(
-              28.0, 20.0, 28.0, 0), // Adjust top padding
+              28.0, 50.0, 28.0, 0), // Adjust top padding
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -82,7 +66,7 @@ class _InterviewPageState extends State<InterviewPage> {
                 "🎨 Personalized Practice",
                 style: TextStyle(
                   fontSize: 22,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: Color(0xFFC4084F),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -369,7 +353,9 @@ class _InterviewPageState extends State<InterviewPage> {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed("/recordPage");
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 35),
                   alignment: Alignment.centerLeft,
@@ -394,6 +380,7 @@ class _InterviewPageState extends State<InterviewPage> {
                   ],
                 ),
               ),
+              Divider(height: 10, color: Colors.transparent),
             ],
           ),
         ),

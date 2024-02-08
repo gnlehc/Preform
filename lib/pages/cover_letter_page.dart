@@ -1,11 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../widgets/bottom_navbar.dart';
-
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
@@ -13,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'cover_letter_feedback_page.dart';
 
 void main() {
-  runApp(MaterialApp(home: CoverLetterPage()));
+  runApp(const MaterialApp(home: CoverLetterPage()));
 }
 
 enum CVOption { curriculumVitae, resume }
@@ -90,7 +86,6 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
         {"role": "system", "content": "You are an expert Resume Analyzer. Provide a comprehensive review, feedback, and recommendation of this resume: $resumeText"},
         {"role": "user", "content": ""}
       ],
-      // TODO : max_tokennya nanti bisa diatur antara 300-500 [ 1 word = 1.3 token | $0.001 per 1000 token ]
       "max_tokens": 300, // ini untuk membatasi panjang kalimat / output yang dikeluarin gpt (biar hemat juga credit yang terpakai tiap keluarin output)
     });
 
@@ -163,7 +158,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
           // if there are error
           print(e);
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Failed to analyze CV with GPT, please try again')),
+            const SnackBar(content: Text('Failed to analyze CV with GPT, please try again')),
           );
         }
 
@@ -173,43 +168,16 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
         // Get.back();
         print('Failed to upload CV.');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to analyze CV, please try again')),
+          const SnackBar(content: Text('Failed to analyze CV, please try again')),
         );
       }
     } else {
       // Prompt the user to select a file first
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please select a file first')),
+        const SnackBar(content: Text('Please select a file first')),
       );
     }
   }
-
-  // Old analyzecv (before implementing flask api)
-  /*
-  void _analyzeCV() async {
-    if (_cvFile != null) {
-      // Implement logic cv analysis disini (pake openai api)
-
-      // ------------------------
-
-      // now navigate to loading page
-      // Navigate to the loading page
-      Navigator.of(context).pushNamed('/loadingPage');
-
-      // Simulate loading delay
-      await Future.delayed(Duration(seconds: 5));
-
-      // After loading, navigate ke feedback page
-      Navigator.of(context).pushNamed('/coverLetterFeedbackPage');
-      print('Analyze CV: ${_cvFile?.path}');
-    } else {
-      // Prompt the user to select a file first
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please select a file first')),
-      );
-    }
-  }
-  */
 
   void _clearSelection() {
     setState(() {
@@ -231,7 +199,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
         Navigator.pushNamed(context, '/');
         break;
       case 1:
-        Navigator.pushNamed(context, '/interviewPage');
+        Navigator.pushNamed(context, '/exploreInterviewPage');
         break;
       case 2:
         Navigator.pushNamed(context, '/coverLetterPage');
@@ -249,7 +217,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Flexible(
+          const Flexible(
             child: Padding(
                 padding: EdgeInsets.only(left: 25, right: 25),
                 child: Text(
@@ -257,10 +225,10 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 28,
-                      color: const Color(0xFFFF6C37)),
+                      color: Color(0xFFFF6C37)),
                 )),
           ),
-          Divider(
+          const Divider(
             height: 10,
             thickness: 1,
             color: Colors.transparent,
@@ -269,7 +237,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
             selectedTileColor: const Color(0xFFFF6C37),
             title: const Text(
               'Curriculum Vitae',
-              style: TextStyle(color: const Color(0xFFFF6C37)),
+              style: TextStyle(color: Color(0xFFFF6C37)),
             ),
             value: CVOption.curriculumVitae,
             groupValue: _cvOption,
@@ -284,7 +252,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
               selectedTileColor: const Color(0xFFFF6C37),
               title: const Text(
                 'Resume',
-                style: TextStyle(color: const Color(0xFFFF6C37)),
+                style: TextStyle(color: Color(0xFFFF6C37)),
               ),
               value: CVOption.resume,
               groupValue: _cvOption,
@@ -294,48 +262,48 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                 });
               },
               activeColor: const Color(0xFFFF6C37)),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           _cvFile != null
               ? Container(
             padding: const EdgeInsets.all(40),
             decoration: BoxDecoration(
-              border: Border.all(color: Color(0xFFFF6C37), width: 2),
+              border: Border.all(color: const Color(0xFFFF6C37), width: 2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Column(
               children: [
-                Icon(
+                const Icon(
                   Icons.file_upload,
                   color: Color(0xFFFF6C37),
                   size: 24,
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Text('Selected File: ${_cvFile!
                     .path
                     .split('/')
                     .last}'),
                 TextButton(
                   onPressed: _clearSelection,
-                  child: Text('Cancel', style: TextStyle(color: Color(0xFFFF6C37)),),
+                  child: const Text('Cancel', style: TextStyle(color: Color(0xFFFF6C37)),),
                 ),
               ],
             ),
           ) : Container(
-            padding: EdgeInsets.all(40),
+            padding: const EdgeInsets.all(40),
             decoration: BoxDecoration(
-              border: Border.all(color: Color(0xFFFF6C37), width: 2),
+              border: Border.all(color: const Color(0xFFFF6C37), width: 2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Column(
               children: [
-                Icon(
+                const Icon(
                   Icons.file_upload,
                   color: Color(0xFFFF6C37),
                   size: 24,
                 ),
                 TextButton(
                   onPressed: _pickCV,
-                  child: Text(
+                  child: const Text(
                     'Upload CV .pdf',
                     style: TextStyle(
                       color: Color(0xFFFF6C37),
@@ -373,7 +341,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                 )
                 */
 
-          , SizedBox(height: 20),
+          , const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(

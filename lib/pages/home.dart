@@ -51,43 +51,43 @@ class _HomeState extends State<Home> {
     int score = 90;
     double percent = score / 100;
     Color progressColor =
-        Color.lerp(const Color(0xFFCE194B), const Color(0xFFFF6C37), percent)!;
+    Color.lerp(const Color(0xFFCE194B), const Color(0xFFFF6C37), percent)!;
     final List<Map<String, String>> qaPairs = [
       {
         'question':
-            'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
+        'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
         'answer':
-            'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
+        'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
       },
       {
         'question':
-            'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
+        'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
         'answer':
-            'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
+        'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
       },
       {
         'question':
-            'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
+        'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
         'answer':
-            'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
+        'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
       },
       {
         'question':
-            'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
+        'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
         'answer':
-            'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
+        'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
       },
       {
         'question':
-            'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
+        'Can you tell us about a challenging project you worked on at TechGiant Inc. and how you approached it?',
         'answer':
-            'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
+        'At TechGiant Inc., I was part of a team that developed a machine learning model to improve data processing efficiency. The challenge was to integrate the model seamlessly with our existing infrastructure without disrupting ongoing services.'
       },
       {
         'question':
-            'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
+        'What motivated you to develop a personal finance tracker app? What technologies did you use, and what did you learn from this project?',
         'answer':
-            'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
+        'I was motivated by the need to manage personal finances better. For this project, I used Flutter for the frontend and Firebase for the backend. I learned a lot about state management and the importance of a clean UI/UX design.'
       },
     ];
 
@@ -96,7 +96,7 @@ class _HomeState extends State<Home> {
         padding: EdgeInsets.only(left: 20, right: 20),
         child: Column(
           children: [
-            const Row(children: [
+            Row(children: const [
               Padding(
                 padding: EdgeInsets.only(top: 50, left: 10),
                 child: Text(
@@ -123,8 +123,7 @@ class _HomeState extends State<Home> {
                       'Technical ability': 78,
                       'Leadership skills': 100,
                       'Teamwork skills': 56,
-                      // 'Presentation skills': 36,
-                      'Organizational skills': 70
+                      'Organizational skills': 70,
                     },
                   ),
                   SizedBox(height: 10),
@@ -135,7 +134,8 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const FeedbackPage()),
+                              builder: (context) => const FeedbackPage(
+                                conversationData: [],)),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -145,32 +145,36 @@ class _HomeState extends State<Home> {
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         elevation: 0,
-
-            ),
-         
                       ),
                       child: const Text(
                         'View previous feedback',
-                        textAlign: TextAlign.left,
                         style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 14.0,
-                            color: Colors.white),
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14.0,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(height: 20),
-                  Text("📑 Previous Interview Prep",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  const Text(
+                    "📑 Previous Interview Prep",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
                   SizedBox(height: 6),
-                  Text("Continue your interview preperations",
-                      style: TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 14)),
-                   SizedBox(height: 12),
-                  Row(children: [
-                    PrevInterviewCard(progressValue: 50, numberPercentage: 20)
-                  ],)
+                  const Text(
+                    "Continue your interview preparations",
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal, fontSize: 14,
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    children: [
+                      PrevInterviewCard(
+                          progressValue: 50, numberPercentage: 20),
+                    ],
+                  ),
                 ],
               ),
             ),

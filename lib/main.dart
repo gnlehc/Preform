@@ -11,6 +11,7 @@ import 'package:preform/pages/interview_page.dart';
 import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
 import 'package:preform/pages/splashscreen.dart';
+import 'package:preform/pages/record.dart';
 import 'package:preform/pages/tts_testing.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:preform/widgets/loading.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: const LoginForm(),
+      home: RecordPage(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/',
-          page: () => TtsTesting(),
+          page: () => const SplashScreen(),
         ),
         GetPage(
           name: '/home',
@@ -83,7 +84,11 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: '/coverLetterFeedbackPage',
-          page: () => const CoverLetterFeedbackPage(),
+          page: () {
+            // Assuming the feedback text is passed as a string argument
+            final String feedbackText = Get.arguments as String;
+            return CoverLetterFeedbackPage(feedbackText: feedbackText);
+          },
         ),
         // Other routes :
       ],

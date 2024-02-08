@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:text_to_speech/text_to_speech.dart';
+import 'package:video_player/video_player.dart';
+
 
 void main() {
   runApp(MaterialApp(
@@ -15,14 +18,18 @@ class RecordPage extends StatefulWidget {
 }
 
 class RecordPageState extends State<RecordPage> {
+  FlutterTts flutterTts = FlutterTts();
   TextToSpeech tts = TextToSpeech();
   SpeechToText _speechToText = SpeechToText();
   String _lastWords = "";
+  VideoPlayerController? _controller; //
 
   @override
   void initState() {
     super.initState();
     _initSpeechToText();
+    _initVideoPlayer(); //
+    _setupTts();
   }
 
   void _initSpeechToText() async {
@@ -51,11 +58,32 @@ class RecordPageState extends State<RecordPage> {
     });
   }
 
+  void _initVideoPlayer() {
+    _controller = VideoPlayerController.asset('assets/img/viddd.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+      });
+  }
+
+void _setupTts() {
+  flutterTts.setStartHandler(() {
+    // No need to change video playback here; start handler just starts TTS
+  });
+
+  flutterTts.setCompletionHandler(() {
+    // Stop the video when TTS completes speaking
+    setState(() {
+      _controller?.pause(); // Optionally seek to a certain position if needed
+    });
+  });
+}
+
   @override
   void dispose() {
     super.dispose();
     _speechToText.stop();
-    tts.stop();
+   flutterTts.stop();
+    _controller?.dispose();
   }
 
   @override
@@ -99,14 +127,23 @@ class RecordPageState extends State<RecordPage> {
         ],
       ),
       body: Column(
+        
         children: [
+          // Your existing UI components
           Expanded(
             flex: 2,
             child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const Image(
-                  image: AssetImage(''), // Your person image
-                )),
+              padding: const EdgeInsets.all(8.0),
+              child: _controller != null && _controller!.value.isInitialized
+                  ? AspectRatio(
+                      aspectRatio: _controller!.value.aspectRatio,
+                      child: VideoPlayer(_controller!),
+                    )
+                  : Container(
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator(),
+                    ),
+              ),
           ),
           Expanded(
             child: Container(
@@ -239,23 +276,31 @@ class RecordPageState extends State<RecordPage> {
               onPressed: () async {
 
                 // Text to speech
-                String language = 'en-US';
-                tts.setLanguage(language);
-                String text = "Hello World Good morning!";
-                await tts.speak(text);
+ // Text to speech
+  String language = 'en-US';
+  await flutterTts.setLanguage(language);
+  String text = "Hello World. Good morning. I am an AI model that will interview you soon. I am really happy to see!";
+  
+  // Ensure the video is at the beginning when TTS starts
+  _controller?.seekTo(Duration.zero);
+  _controller?.play(); // Play the video when TTS starts
+
+  await flutterTts.speak(text);
+  
+  // Note: The video will stop when TTS completes as handled in the setCompletionHandler.
 
                 // listen Speech to text 
-                if (await _speechToText.hasPermission &&
-                    _speechToText.isNotListening) {
-                  _startListening();
-                  print("Is listening");
-                } else if (_speechToText.isListening) {
-                  _stopListening();
-                  print("stop listening");
-                } else {
-                  _initSpeechToText();
-                  print("init speech");
-                }
+                // if (await _speechToText.hasPermission &&
+                //     _speechToText.isNotListening) {
+                //   _startListening();
+                //   print("Is listening");
+                // } else if (_speechToText.isListening) {
+                //   _stopListening();
+                //   print("stop listening");
+                // } else {
+                //   _initSpeechToText();
+                //   print("init speech");
+                // }
               },
             ),
           ),

@@ -13,7 +13,6 @@ import 'package:preform/pages/login.dart';
 import 'package:preform/pages/signup.dart';
 import 'package:preform/pages/splashscreen.dart';
 import 'package:preform/pages/record.dart';
-import 'package:preform/pages/tts_testing.dart';
 import 'package:preform/user_auth/user_provider.dart';
 import 'package:preform/widgets/loading.dart';
 import 'package:preform/widgets/text_to_speech.dart';
@@ -54,7 +53,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/',
-          page: () => SplashScreen(),
+          page: () => const SplashScreen(),
         ),
         GetPage(
           name: '/home',
@@ -96,34 +95,6 @@ class MyApp extends StatelessWidget {
         // Other routes :
       ],
       debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
-
-  void _onNavbarItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SplashScreen(),
-      // bottomNavigationBar: Navbar(
-      //   currentIndex: _currentIndex,
-      //   onTap: _onNavbarItemTapped,
-      // ),
     );
   }
 }

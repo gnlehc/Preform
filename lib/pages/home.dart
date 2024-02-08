@@ -48,8 +48,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    int _score = 90;
-    double percent = _score / 100;
+    int score = 90;
+    double percent = score / 100;
     Color progressColor =
         Color.lerp(const Color(0xFFCE194B), const Color(0xFFFF6C37), percent)!;
     final List<Map<String, String>> qaPairs = [

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:preform/user_auth/user_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/bottom_navbar.dart';
 
@@ -10,7 +12,6 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-
   // 2 = Account Page
   int _selectedIndex = 3;
 
@@ -34,21 +35,29 @@ class _AccountPageState extends State<AccountPage> {
         Navigator.pushNamed(context, '/accountPage');
         break;
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Text(
-          "This is the Account page",
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+      body: Padding(
+        padding: EdgeInsets.all(50.0),
+        child: const Center(
+            child: Column(
+          children: [
+            CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 24,
+              child: Icon(Icons.person),
+            ),
+            SizedBox(height: 12),
+            Text("Chelsea Ng",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10),
+            Text("chelseang@gmail.com",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal))
+          ],
+        )),
       ),
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
@@ -56,7 +65,4 @@ class _AccountPageState extends State<AccountPage> {
       ),
     );
   }
-
-
-
 }

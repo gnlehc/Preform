@@ -1,4 +1,6 @@
+
 import 'dart:convert';
+
 
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -13,7 +15,9 @@ void main() {
 }
 
 class RecordPage extends StatefulWidget {
+
   late final String feedbackTextFromGPT; // Added to accept feedback text
+
 
   @override
   RecordPageState createState() => RecordPageState();
@@ -21,8 +25,10 @@ class RecordPage extends StatefulWidget {
 
 class RecordPageState extends State<RecordPage> {
   TextToSpeech tts = TextToSpeech();
+
   SpeechToText _speechToText = SpeechToText();
   bool speechEnabled = false;
+
   String _lastWords = "";
 
   @override
@@ -52,7 +58,7 @@ class RecordPageState extends State<RecordPage> {
   void _onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
       _lastWords = result.recognizedWords;
-      // print("This is the result $_lastWords");
+
     });
   }
 
@@ -130,6 +136,7 @@ class RecordPageState extends State<RecordPage> {
 
   bool hasSpoken = false;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,12 +149,14 @@ class RecordPageState extends State<RecordPage> {
           ),
           onPressed: () {},
         ),
+
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min, // Use min size for the column
           children: <Text>[
             Text(
               'Interview Session',
+
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
@@ -164,6 +173,7 @@ class RecordPageState extends State<RecordPage> {
           ],
         ),
         actions: [
+
           Icon(Icons.phone),
           SizedBox(width: 10),
           Icon(Icons.videocam),
@@ -172,17 +182,20 @@ class RecordPageState extends State<RecordPage> {
       ),
       body: Column(
         children: [
+
           Expanded(
             flex: 2,
             child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: const Image(
+
                   image: AssetImage(''), // Your person image
                 )),
           ),
           Expanded(
             child: Container(
               color: Colors.white,
+
               child: ListTile(
                 title: Text(
                   'Interviewer:',
@@ -236,6 +249,7 @@ class RecordPageState extends State<RecordPage> {
                     // While the Future is not yet completed, display a loading spinner
                     return CircularProgressIndicator();
                   },
+
                 ),
               ),
             ),
@@ -260,20 +274,24 @@ class RecordPageState extends State<RecordPage> {
                   Icon(Icons.pause,
                       color: Color(0xFFFB724C)), // Pause icon color adjusted
                   SizedBox(width: 8.0), // Spacing between the icon and text
+
                   Text(
                     'Timer',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+
                       color: Color(0xFFFB724C), // Text color adjusted
                     ),
                   ),
                   SizedBox(
                       width:
                       8.0), // Spacing between text "Timer" and the timer value
+
                   Text(
                     '01:53',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+
                       color: Color(0xFFFB724C), // Text color adjusted
                     ),
                   ),
@@ -281,6 +299,7 @@ class RecordPageState extends State<RecordPage> {
                   Icon(
                     Icons.timer, // Icon data
                     color: Color(0xFFFB724C), // Icon color
+
                   )
                 ],
               ),
@@ -288,12 +307,15 @@ class RecordPageState extends State<RecordPage> {
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
+
             margin: EdgeInsets.only(
+
               top: 10,
               left: 10.0,
               right: 10.0,
             ),
             decoration: BoxDecoration(
+
                 color: Color.fromARGB(255, 255, 141, 95),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Color(0xFFFB724C))),
@@ -333,6 +355,7 @@ class RecordPageState extends State<RecordPage> {
             //padding: EdgeInsets.all(20),
             child: Text(
               'Preform is listening...',
+
               style: TextStyle(color: Color(0xFFFF6C37)),
             ),
           ),
@@ -350,6 +373,7 @@ class RecordPageState extends State<RecordPage> {
                 ),
                 onPressed: () async {
                   /*
+
                 // Text to speech
                 String language = 'en-US';
                 tts.setLanguage(language);
@@ -474,3 +498,4 @@ Future<String> sendToGPTAPI(Map<String, dynamic> payload) async {
     throw Exception('Error sending message to GPT-3.5 Turbo: $e');
   }
 }
+

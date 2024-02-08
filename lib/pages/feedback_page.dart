@@ -18,7 +18,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     });
   }
 
-  final int _score = 90;
+  final int _score = 70;
 
   @override
   Widget build(BuildContext context) {

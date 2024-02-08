@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:preform/user_auth/user_provider.dart';
-import 'package:provider/provider.dart';
 
 class AuthMiddleware extends GetMiddleware {
   @override

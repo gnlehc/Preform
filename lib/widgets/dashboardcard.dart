@@ -3,27 +3,27 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const MaterialApp(
-      home: PrevInterviewCard(
+      home: DashboardCard(
     progressValue: 0.1,
     numberPercentage: 10,
   )));
 }
 
-class PrevInterviewCard extends StatefulWidget {
+class DashboardCard extends StatefulWidget {
   final double progressValue;
   final int numberPercentage;
 
-  const PrevInterviewCard({
+  const DashboardCard({
     Key? key,
     required this.progressValue,
     required this.numberPercentage,
   }) : super(key: key);
 
   @override
-  _PrevInterviewCardState createState() => _PrevInterviewCardState();
+  _DashboardCardState createState() => _DashboardCardState();
 }
 
-class _PrevInterviewCardState extends State<PrevInterviewCard> {
+class _DashboardCardState extends State<DashboardCard> {
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: const Alignment(0.6, 0.6), children: [
@@ -34,7 +34,7 @@ class _PrevInterviewCardState extends State<PrevInterviewCard> {
           margin: const EdgeInsets.all(25),
           elevation: 0,
           shape: const RoundedRectangleBorder(
-            side: BorderSide(color: Color(0xFFFF6C37), width: 2.0),
+            side: BorderSide(color: Color(0xFFFF6C37)),
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           child: Container(

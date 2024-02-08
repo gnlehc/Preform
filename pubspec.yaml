@@ -115,9 +115,13 @@ dependencies:
 
   get: ^4.6.1         
   get_storage: ^2.0.3
+  http: ^1.1.0
+  serious_python: ^0.1.5
   file_picker: ^6.1.1
+  speech_to_text: ^6.6.0
+  text_to_speech: ^0.2.3
+  flutter_tts: ^3.8.5
 
-  http: ^1.0.0
 
   speech_to_text: ^6.6.0
   text_to_speech: ^0.2.3
@@ -135,6 +139,7 @@ flutter:
     - lib/images/
     - assets/img/logopreform.png
     - assets/img/filter.png
+       
 
   # To add assets to your application, add an assets section, like this:
   # assets:

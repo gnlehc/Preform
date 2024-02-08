@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
+
+
 class DashboardWidget extends StatelessWidget {
   final String userName;
   final String latestScore;
@@ -10,7 +12,7 @@ class DashboardWidget extends StatelessWidget {
   final String averageScore;
   final Map<String, int> scores;
 
-  DashboardWidget({
+  const DashboardWidget({
     Key? key,
     required this.userName,
     required this.latestScore,

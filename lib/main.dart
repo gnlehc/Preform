@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         Get.put(UserProvider());
       }),
       initialRoute: '/',
-      home: TtsTesting(),
+      home: const LoginForm(),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.dmSansTextTheme(
@@ -64,8 +64,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: '/signup',
             page: () => const SignUpForm(),
-            middlewares: [AuthMiddleware()]
-        ),
+            middlewares: [AuthMiddleware()]),
         GetPage(
           name: '/interviewPage',
           page: () => const InterviewPage(),
@@ -87,10 +86,8 @@ class MyApp extends StatelessWidget {
           page: () => const CoverLetterFeedbackPage(),
         ),
         // Other routes :
-
       ],
       debugShowCheckedModeBanner: false,
-
     );
   }
 }

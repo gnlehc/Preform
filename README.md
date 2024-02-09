@@ -8,6 +8,7 @@ Mobile AI Interview App & CV Analysis developed by team solaGratia for Imagine C
 
 ## Getting Started
 ### Step 1 - Clone this project
+Go to your terminal / command prompt, and insert :
 #### Step 1.1 :
 ```
 git clone https://github.com/gnlehc/Preform.git

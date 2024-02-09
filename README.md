@@ -9,7 +9,7 @@ Mobile AI Interview App & CV Analysis developed by team SolaGratia for Microsoft
   <br>
 </p>
 <b>MVP Demo Video is available here: https://youtu.be/ikTfemRqdQo</b>
-<br>
+
 ## Core Features
 + Personalized AI Interview.
 + Resume & CV Analysis using AI.

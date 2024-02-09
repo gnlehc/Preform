@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 /*
 void main() {
@@ -26,7 +28,7 @@ class _CoverLetterFeedbackPageState extends State<CoverLetterFeedbackPage> {
             Icons.arrow_back_ios_new,
             color: Color(0xFFFF6C37),
           ),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Get.toNamed('/coverLetterPage')
         ),
         title: const Text(
           "Feedback",

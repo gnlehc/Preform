@@ -124,6 +124,7 @@ dependencies:
   text_to_speech: ^0.2.3
   flutter_tts: ^3.8.5
   video_player: ^2.8.2
+  read_pdf_text: ^0.2.1
 
 
 

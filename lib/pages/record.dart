@@ -103,7 +103,7 @@ void _setupTts() {
     final uri = Uri.parse('https://api.openai.com/v1/chat/completions');
 
     // api key dari openai (coba-coba)
-    const apiKey = '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';
+    const apiKey = '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';
 
     // header untuk dari openai (coba-coba)
     final headers = {

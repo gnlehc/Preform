@@ -28,7 +28,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
   // untuk mengirim message ke gpt
   Future<String> sendMessageToGPT(dynamic conversationData) async {
-    const String apiKey = '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';
+    const String apiKey = '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';
     final uri = Uri.parse('https://api.openai.com/v1/chat/completions');
 
     final headers = {

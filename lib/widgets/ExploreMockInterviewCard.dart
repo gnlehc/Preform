@@ -77,7 +77,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                                     ),
                                     child: const Text(
                                       'HR Interview',
-                                      style: TextStyle(fontSize: 8),
+                                      style: TextStyle(fontSize: 7),
                                     ),
                                   ),
                                 ),
@@ -100,7 +100,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                                     ),
                                     child: const Text(
                                       'Entry Level',
-                                      style: TextStyle(fontSize: 9),
+                                      style: TextStyle(fontSize: 7),
                                     ),
                                   ),
                                 ),
@@ -279,7 +279,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                                     ),
                                     child: const Text(
                                       'HR Interview',
-                                      style: TextStyle(fontSize: 8),
+                                      style: TextStyle(fontSize: 7),
                                     ),
                                   ),
                                 ),
@@ -302,7 +302,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                                     ),
                                     child: const Text(
                                       'Entry Level',
-                                      style: TextStyle(fontSize: 9),
+                                      style: TextStyle(fontSize: 7),
                                     ),
                                   ),
                                 ),

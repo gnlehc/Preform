@@ -2,9 +2,9 @@
 Mobile AI Interview App & CV Analysis developed by team solaGratia for Imagine Cup 2024.
 
 ## Core Features
-1. Personalized AI Interview
-2. Resume & CV Analysis using AI
-3. Receive feedback after the Interview session
++ Personalized AI Interview
++ Resume & CV Analysis using AI
++ Receive feedback after the Interview session
 
 ## Getting Started
 ### Step 1 - Clone this project

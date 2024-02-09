@@ -72,42 +72,58 @@ class _ExploreInterviewPageState extends State<ExploreInterviewPage> {
                 SizedBox(height: 12),
                 Container(
                   width: 129,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const InterviewPage()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(12.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(60.0),
-                      ),
-                      backgroundColor: Color(0xFFDE545A),
-                      foregroundColor: Color(0xFFB93982),
-                      elevation: 0, // No shadow
-                      minimumSize: Size(
-                          0, 0), // Allow the button to be as small as needed
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Customize now!',
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                  child: SizedBox(
+                    width: double.infinity, // Expand the SizedBox to fill the container width
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const InterviewPage(),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.all(12.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(60.0),
                         ),
-                      ],
+                        backgroundColor: Color(0xFFDE545A),
+                        foregroundColor: Color(0xFFB93982),
+                        elevation: 0, // No shadow
+                        minimumSize: Size(
+                          0,
+                          0,
+                        ), // Allow the button to be as small as needed
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center, // Center the text horizontally
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Customize now!',
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+
                     ),
                   ),
                 ),
+
                 SizedBox(height: 20),
               ],
-            )),
+            )
+        ),
       ),
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,

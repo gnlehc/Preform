@@ -240,7 +240,7 @@ class _InterviewPageState extends State<InterviewPage> {
                     Container(
                       alignment: Alignment.bottomRight,
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 60, right: 60),
+                        padding: const EdgeInsets.only(left: 60, right: 60, bottom : 10),
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
@@ -368,7 +368,7 @@ class _InterviewPageState extends State<InterviewPage> {
                       'Start Now',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: 12,
                           color: Colors.white),
                       textAlign: TextAlign.center,
                     ),

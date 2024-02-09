@@ -57,50 +57,56 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                       ),
                     ),
                     SizedBox(width: 120),
-                    Column(
+                    Expanded(
+                      child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Row(
-                          children: <Widget>[
-                            SizedBox(
-                              height: 28,
-                              // Set the desired width  // Set the desired height
-                              child: TextButton(
-                                onPressed: () {
-                                  // do something ...
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: Colors.purple[100],
-                                  foregroundColor: Colors.deepPurple[500],
-                                ),
-                                child: const Text(
-                                  'HR Interview',
-                                  style: TextStyle(fontSize: 9),
-                                ),
-                              ),
-                            ),
-                            const VerticalDivider(
-                              width: 6,
-                            ),
-                            SizedBox(
-                              height: 28,
-                              // Set the desired width  // Set the desired height
-                              child: TextButton(
-                                onPressed: () {
-                                  // do something ...
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: Colors.orange[300],
-                                  foregroundColor: Colors.orange[900],
-                                ),
-                                child: const Text(
-                                  'Entry Level',
-                                  style: TextStyle(fontSize: 9),
+                            children: <Widget>[
+                              Expanded(
+                                child: SizedBox(
+                                  height: 28,
+                                  // Set the desired width  // Set the desired height
+                                  child: TextButton(
+                                    onPressed: () {
+                                      // do something ...
+                                    },
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.purple[100],
+                                      foregroundColor: Colors.deepPurple[500],
+                                    ),
+                                    child: const Text(
+                                      'HR Interview',
+                                      style: TextStyle(fontSize: 8),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+
+                              const VerticalDivider(
+                                width: 6,
+                              ),
+                              Expanded(
+                                child: SizedBox(
+                                  height: 28,
+                                  // Set the desired width  // Set the desired height
+                                  child: TextButton(
+                                    onPressed: () {
+                                      // do something ...
+                                    },
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.orange[300],
+                                      foregroundColor: Colors.orange[900],
+                                    ),
+                                    child: const Text(
+                                      'Entry Level',
+                                      style: TextStyle(fontSize: 9),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         const Divider(
                           height: 6,
                           color: Colors.transparent,
@@ -108,27 +114,31 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal:10),
                           child: Row(children: <Widget>[
-                            SizedBox(
-                              height: 28,
-                              // Set the desired width  // Set the desired height
-                              child: TextButton(
-                                onPressed: () {
-                                  // do something ...
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: Colors.yellow[100],
-                                  foregroundColor: Colors.yellow[900],
-                                ),
-                                child: const Text(
-                                  'Recommended by others',
-                                  style: TextStyle(fontSize: 9),
+                            Expanded(
+                              child: SizedBox(
+                                height: 28,
+                                // Set the desired width  // Set the desired height
+                                child: TextButton(
+                                  onPressed: () {
+                                    // do something ...
+                                  },
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.yellow[100],
+                                    foregroundColor: Colors.yellow[900],
+                                  ),
+                                  child: const Text(
+                                    'Recommended by others',
+                                    style: TextStyle(fontSize: 8),
+                                  ),
                                 ),
                               ),
                             ),
+
                           ]),
                         ),
                       ],
                     ),
+                    )
                   ],
                 ),
                 const Divider(
@@ -249,78 +259,88 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                       ),
                     ),
                     SizedBox(width: 120),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            SizedBox(
-                              height: 28,
-                              // Set the desired width  // Set the desired height
-                              child: TextButton(
-                                onPressed: () {
-                                  // do something ...
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: Colors.purple[100],
-                                  foregroundColor: Colors.deepPurple[500],
-                                ),
-                                child: const Text(
-                                  'HR Interview',
-                                  style: TextStyle(fontSize: 9),
-                                ),
-                              ),
-                            ),
-                            const VerticalDivider(
-                              width: 6,
-                            ),
-                            SizedBox(
-                              height: 28,
-                              // Set the desired width  // Set the desired height
-                              child: TextButton(
-                                onPressed: () {
-                                  // do something ...
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: Colors.orange[300],
-                                  foregroundColor: Colors.orange[900],
-                                ),
-                                child: const Text(
-                                  'Entry Level',
-                                  style: TextStyle(fontSize: 9),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: SizedBox(
+                                  height: 28,
+                                  // Set the desired width  // Set the desired height
+                                  child: TextButton(
+                                    onPressed: () {
+                                      // do something ...
+                                    },
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.purple[100],
+                                      foregroundColor: Colors.deepPurple[500],
+                                    ),
+                                    child: const Text(
+                                      'HR Interview',
+                                      style: TextStyle(fontSize: 8),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const Divider(
-                          height: 6,
-                          color: Colors.transparent,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal:10),
-                          child: Row(children: <Widget>[
-                            SizedBox(
-                              height: 28,
-                              // Set the desired width  // Set the desired height
-                              child: TextButton(
-                                onPressed: () {
-                                  // do something ...
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor: Colors.yellow[100],
-                                  foregroundColor: Colors.yellow[900],
-                                ),
-                                child: const Text(
-                                  'Recommended by others',
-                                  style: TextStyle(fontSize: 9),
+
+                              const VerticalDivider(
+                                width: 6,
+                              ),
+                              Expanded(
+                                child: SizedBox(
+                                  height: 28,
+                                  // Set the desired width  // Set the desired height
+                                  child: TextButton(
+                                    onPressed: () {
+                                      // do something ...
+                                    },
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.orange[300],
+                                      foregroundColor: Colors.orange[900],
+                                    ),
+                                    child: const Text(
+                                      'Entry Level',
+                                      style: TextStyle(fontSize: 9),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ]),
-                        ),
-                      ],
-                    ),
+                            ],
+                          ),
+                          const Divider(
+                            height: 6,
+                            color: Colors.transparent,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal:10),
+                            child: Row(children: <Widget>[
+                              Expanded(
+                                child: SizedBox(
+                                  height: 28,
+                                  // Set the desired width  // Set the desired height
+                                  child: TextButton(
+                                    onPressed: () {
+                                      // do something ...
+                                    },
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: Colors.yellow[100],
+                                      foregroundColor: Colors.yellow[900],
+                                    ),
+                                    child: const Text(
+                                      'Recommended by others',
+                                      style: TextStyle(fontSize: 8),
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                            ]),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
                 const Divider(
@@ -383,6 +403,7 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                   thickness: 1,
                   color: Colors.transparent,
                 ),
+
                 Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
                   const Spacer(),
                   TextButton(
@@ -400,7 +421,8 @@ class _ExploreMockInterviewCardState extends State<ExploreMockInterviewCard> {
                       ],
                     ),
                   ),
-                ]),
+                ]
+                ),
               ],
             ),
           ),

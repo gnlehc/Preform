@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-
-
 class DashboardWidget extends StatelessWidget {
   final String userName;
   final String latestScore;
@@ -121,16 +119,17 @@ class DashboardWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
-                        width: 55,
+                        width: 70,
                       ),
-                      const Text(
+                      Expanded(child: const Text(
                         "Average Score",
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
+                      ),),
+
                     ],
                   ),
                   const SizedBox(height: 16),

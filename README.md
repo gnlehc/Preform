@@ -11,7 +11,7 @@ Mobile AI Interview App & CV Analysis developed by team SolaGratia for Microsoft
   Meet Preform, the innovative AI-driven mobile app that's set to guarantee your performance, by transforming your job-seeking and interview preparation. 
   <br>
 </p>
-[MVP Demo Video is available here!](https://youtu.be/ikTfemRqdQo)
+<b>MVP Demo Video is available here: https://youtu.be/ikTfemRqdQo</b>
 <br>
 ## Core Features
 + Personalized AI Interview.

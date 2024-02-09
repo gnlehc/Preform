@@ -1,8 +1,6 @@
 # <img src="assets/img/logopreform.png" alt="preform-logo" width="200" style="margin-right: 20px;">
 Mobile AI Interview App & CV Analysis developed by team SolaGratia for Microsoft Imagine Cup 2024.
-
 <p>
-  <br>
    <img src="https://i.ibb.co/yNzj0g7/S-37634063-0.jpg" alt="preform-logo" width="500" style="margin-right: 20px;">
   <br>
   Meet Preform, the innovative AI-driven mobile app that's set to guarantee your performance, by transforming your job-seeking and interview preparation. 

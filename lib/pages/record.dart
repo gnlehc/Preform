@@ -6,6 +6,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:text_to_speech/text_to_speech.dart';
+import 'package:video_player/video_player.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:http/http.dart' as http;
 
 import 'feedback_page.dart';
@@ -24,17 +26,22 @@ class RecordPage extends StatefulWidget {
 }
 
 class RecordPageState extends State<RecordPage> {
+  FlutterTts flutterTts = FlutterTts();
   TextToSpeech tts = TextToSpeech();
+  bool _isSpeaking = false;
 
   SpeechToText _speechToText = SpeechToText();
   bool speechEnabled = false;
 
   String _lastWords = "";
+  VideoPlayerController? _controller; //
 
   @override
   void initState() {
     super.initState();
     _initSpeechToText();
+    _initVideoPlayer(); //
+    _setupTts();
   }
 
   void _initSpeechToText() async {
@@ -61,11 +68,33 @@ class RecordPageState extends State<RecordPage> {
     });
   }
 
+  void _initVideoPlayer() {
+    _controller = VideoPlayerController.asset('assets/img/viddd.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+      });
+  }
+
+void _setupTts() {
+  flutterTts.setStartHandler(() {
+    _isSpeaking = true; // TTS starts speaking
+  });
+
+  flutterTts.setCompletionHandler(() {
+    // Stop the video when TTS completes speaking
+    setState(() {
+      _isSpeaking = false; // TTS has finished speaking
+      _controller?.pause(); 
+    });
+  });
+}
+
   @override
   void dispose() {
     super.dispose();
     _speechToText.stop();
-    tts.stop();
+   flutterTts.stop();
+    _controller?.dispose();
   }
 
   // untuk pake gpt untuk generate respons dari perkataan user yang uda dijadiin text
@@ -123,12 +152,15 @@ class RecordPageState extends State<RecordPage> {
 
   // Method to convert text to speech for GPT
   Future<void> _textToSpeechForGPT(String text) async {
+    if (_speechToText.isListening) return;
     // Assuming 'setLanguage' and 'speak' methods are synchronous. If they are not, you would need to await them as well.
     String language = 'en-US';
     tts.setLanguage(language); // Set the language for speech
 
     // Now, use the obtained text for speech
     await tts.speak(text); // Speak out the text
+    _controller?.seekTo(Duration.zero);
+    _controller?.play(); // Play the video when TTS starts
   }
 
   bool hasSpoken = false;
@@ -168,22 +200,25 @@ class RecordPageState extends State<RecordPage> {
             ),
           ],
         ),
-        actions: [
-          Icon(Icons.phone),
-          SizedBox(width: 10),
-          Icon(Icons.videocam),
-          SizedBox(width: 10),
-        ],
       ),
       body: Column(
+        
         children: [
+          // Your existing UI components
           Expanded(
             flex: 2,
             child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: const Image(
-                  image: AssetImage(''), // Your person image
-                )),
+              padding: const EdgeInsets.all(8.0),
+              child: _controller != null && _controller!.value.isInitialized
+                  ? AspectRatio(
+                      aspectRatio: _controller!.value.aspectRatio,
+                      child: VideoPlayer(_controller!),
+                    )
+                  : Container(
+                      alignment: Alignment.center,
+                      child: CircularProgressIndicator(),
+                    ),
+              ),
           ),
           Container(
             color: Colors.white,
@@ -197,7 +232,8 @@ class RecordPageState extends State<RecordPage> {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(10.0),
+              margin: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 20.0),
               decoration: BoxDecoration(
                 // Specify the border for the Container
                 border: Border.all(
@@ -243,60 +279,16 @@ class RecordPageState extends State<RecordPage> {
               ),
             ),
           ),
-          Divider(height: 10, color: Colors.transparent),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
-            margin: EdgeInsets.only(
-              left: 10.0,
-              right: 10.0,
-            ), // Add margin to give space around the container
-            decoration: BoxDecoration(
-              color: Color(0xFFFFE9E0),
-              // This is a light orange color, you may need to adjust the color to match exactly
-              borderRadius: BorderRadius.circular(20.0), // Rounded corners
-            ),
-            child: IntrinsicHeight(
-              // Ensures the row's height only takes the space it needs
-              child: Row(
-                mainAxisSize: MainAxisSize
-                    .min, // Use the minimum space that Row children need
-                children: [
-                  Icon(Icons.pause,
-                      color: Color(0xFFFB724C)), // Pause icon color adjusted
-                  SizedBox(width: 8.0), // Spacing between the icon and text
-
-                  Text(
-                    'Timer',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-
-                      color: Color(0xFFFB724C), // Text color adjusted
-                    ),
-                  ),
-                  SizedBox(
-                      width:
-                          8.0), // Spacing between text "Timer" and the timer value
-
-                  Text(
-                    '01:53',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-
-                      color: Color(0xFFFB724C), // Text color adjusted
-                    ),
-                  ),
-                  Spacer(), // This will push the icon to the end of the Row
-                  Icon(
-                    Icons.timer, // Icon data
-                    color: Color(0xFFFB724C), // Icon color
-                  )
-                ],
-              ),
-            ),
-          ),
+          // Divider(height: 10, color: Colors.transparent),
+          // Container(
+          //   padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+          //   margin: EdgeInsets.only(
+          //     left: 10.0,
+          //     right: 10.0,
+          //   ), // Add margin to give space around the container
+          // ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-
             margin: EdgeInsets.only(
               top: 10,
               left: 10.0,
@@ -361,20 +353,13 @@ class RecordPageState extends State<RecordPage> {
                     borderRadius: BorderRadius.circular(50)),
                 child: IconButton(
                     icon: Icon(
-                      Icons.mic,
+                       _speechToText.isListening ? Icons.mic : Icons.mic_off,
                       size: 35,
                       color: Colors.white,
                     ),
                     onPressed: () async {
-                      /*
-
-                // Text to speech
-                String language = 'en-US';
-                tts.setLanguage(language);
-                String text = "Hello World Good morning!";
-                await tts.speak(text);
-*/
                       // listen Speech to text
+                      if (_isSpeaking) return;
                       if (await _speechToText.hasPermission &&
                           _speechToText.isNotListening) {
                         _startListening();

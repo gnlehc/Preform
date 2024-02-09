@@ -1,10 +1,13 @@
-![image](https://github.com/gnlehc/Preform/assets/79363960/4d5d753d-1154-4c47-8181-25bcf6b2db5c)# Preform
+# Preform
 Mobile AI Interview App & CV Analysis developed by team SolaGratia for Microsoft Imagine Cup 2024.
 
 <p>
   <img src="assets/img/logopreform.png" alt="preform-logo" width="200" style="margin-right: 20px;">
-   <img src="https://i.ibb.co/yNzj0g7/S-37634063-0.jpg" alt="preform-logo" width="200" style="margin-right: 20px;">
-  <img src="https://i.ibb.co/T09BZzL/S-37634065-0.jpg" alt="preform-logo" width="200" style="margin-right: 20px;">
+  <br>
+   <img src="https://i.ibb.co/yNzj0g7/S-37634063-0.jpg" alt="preform-logo" width="600" style="margin-right: 20px;">
+  <br>
+  <img src="https://i.ibb.co/T09BZzL/S-37634065-0.jpg" alt="preform-logo" width="600" style="margin-right: 20px;">
+  <br>
   Meet Preform, the innovative AI-driven mobile app that's set to guarantee your performance, by transforming your job-seeking and interview preparation. 
 </p>
 

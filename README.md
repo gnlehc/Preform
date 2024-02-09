@@ -1,7 +1,7 @@
 # Preform
 Mobile AI Interview App & CV Analysis developed by team solaGratia for Imagine Cup 2024.
 
-## Core Feature :
+## Core Feature
 1. Personalized AI Interview
 2. Resume & CV Analysis using AI
 3. Receive feedback after the Interview session

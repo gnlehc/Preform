@@ -109,6 +109,7 @@ class _ExploreInterviewPageState extends State<ExploreInterviewPage> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
 

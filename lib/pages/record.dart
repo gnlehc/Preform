@@ -69,7 +69,7 @@ class RecordPageState extends State<RecordPage> {
   }
 
   void _initVideoPlayer() {
-    _controller = VideoPlayerController.asset('assets/img/viddd.mp4')
+    _controller = VideoPlayerController.asset('assets/img/interviewerdummy.mp4')
       ..initialize().then((_) {
         setState(() {});
       });

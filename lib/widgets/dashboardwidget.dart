@@ -95,7 +95,7 @@ class DashboardWidget extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 35),
+                      const SizedBox(width: 30),
                       const Text(
                         "100/100",
                         style: TextStyle(

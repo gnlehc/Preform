@@ -17,7 +17,8 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 3), () {
+    // wait for the gpt to generate feedback
+    Future.delayed(const Duration(seconds: 10), () {
       setState(() {
         isLoading = false;
       });

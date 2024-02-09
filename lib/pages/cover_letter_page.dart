@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:read_pdf_text/read_pdf_text.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'cover_letter_feedback_page.dart';
 
@@ -53,8 +54,9 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     // api key dari azure :
     // const apiKey = 'b2aa888ad83f4e0ba5412abaf23139da';
 
-    // api key dari openai (coba-coba)
-    const apiKey = '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';
+    // use your own OpenAI API Key
+    // OPENAI_API_KEY = Your own OpenAI API Key
+    final apiKey =  dotenv.env['OPENAI_API_KEY'] ?? "";
 
     // header untuk dari azure :
     /*
@@ -89,11 +91,11 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
         {
           "role": "system",
           "content":
-              "You are an expert Resume Analyzer. Provide a comprehensive review, feedback, and recommendation of this resume: $resumeText"
+              "You are an expert Resume Analyzer. Provide a compact feedback, and recommendation of this resume: $resumeText, maximum 300 words"
         },
         {"role": "user", "content": ""}
       ],
-      "max_tokens": 300,
+      "max_tokens": 325,
       // ini untuk membatasi panjang kalimat / output yang dikeluarin gpt (biar hemat juga credit yang terpakai tiap keluarin output)
     });
 

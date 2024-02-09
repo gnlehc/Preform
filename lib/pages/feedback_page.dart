@@ -6,6 +6,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:preform/widgets/bottom_navbar.dart';
 import 'package:preform/widgets/dropdown.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class FeedbackPage extends StatefulWidget {
   final List<Map<String, dynamic>> conversationData;
@@ -28,7 +29,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
   // untuk mengirim message ke gpt
   Future<String> sendMessageToGPT(dynamic conversationData) async {
-    const String apiKey = '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';
+    // use your own OpenAI API Key
+    // OPENAI_API_KEY = Your own OpenAI API Key
+    final String apiKey =  dotenv.env['OPENAI_API_KEY'] ?? "";
     final uri = Uri.parse('https://api.openai.com/v1/chat/completions');
 
     final headers = {

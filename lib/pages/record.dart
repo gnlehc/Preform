@@ -11,6 +11,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:http/http.dart' as http;
 
 import 'feedback_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -69,7 +70,7 @@ class RecordPageState extends State<RecordPage> {
   }
 
   void _initVideoPlayer() {
-    _controller = VideoPlayerController.asset('assets/img/interviewerdummy.mp4')
+    _controller = VideoPlayerController.asset('assets/img/interviewerDummy.mp4')
       ..initialize().then((_) {
         setState(() {});
       });
@@ -102,8 +103,9 @@ void _setupTts() {
     // masukan uri & api key nya disini (untuk dari openai, coba-coba) :
     final uri = Uri.parse('https://api.openai.com/v1/chat/completions');
 
-    // api key dari openai (coba-coba)
-    const apiKey = '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';
+    // use your own OpenAI API Key
+    // OPENAI_API_KEY = Your own OpenAI API Key
+    final apiKey =  dotenv.env['OPENAI_API_KEY'] ?? "";
 
     // header untuk dari openai (coba-coba)
     final headers = {

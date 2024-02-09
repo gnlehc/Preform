@@ -2,9 +2,9 @@
 Mobile AI Interview App & CV Analysis developed by team solaGratia for Imagine Cup 2024.
 
 ## Core Feature :
-- Personalized AI Interview
-- Resume & CV Analysis using AI
-- Receive feedback after the Interview session
+* Personalized AI Interview
+* Resume & CV Analysis using AI
+* Receive feedback after the Interview session
 
 ## Getting Started
 ### Step 1 - Clone this project
@@ -38,6 +38,6 @@ Make sure you have your Android Emulator installed (in Android Studio / VsCode),
 #### Option 2 :
 Open Android Studio, connect your Android phone to your PC/Laptop via your changer cable, Enable USB Debugging, and click "Run" in Android Studio
 
-### Important Notes & Plan for the future :
+## Important Notes & Plan for the future :
 1. In the near future, we will deploy Preform on Azure
 2. We will apply avatar for the AI Interviewer in the Interview feature using Azure Viseme (text-to-speech animation from Azure Cognitive Services)

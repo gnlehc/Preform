@@ -124,6 +124,8 @@ dependencies:
   text_to_speech: ^0.2.3
   flutter_tts: ^3.8.5
   video_player: ^2.8.2
+  read_pdf_text: ^0.2.1
+  flutter_dotenv: ^5.0.2
 
 
 
@@ -139,7 +141,9 @@ flutter:
     - assets/img/logopreform.png
     - assets/img/filter.png
     - assets/img/viddd.mp4
-    - assets/img/interviewerdummy.mp4
+    - assets/img/interviewerDummy.mp4
+    - assets/img/interviewerdummy2.mp4
+    - .env
        
 
   # To add assets to your application, add an assets section, like this:

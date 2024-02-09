@@ -5,6 +5,8 @@ import '../widgets/bottom_navbar.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:read_pdf_text/read_pdf_text.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'cover_letter_feedback_page.dart';
 
@@ -52,8 +54,9 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     // api key dari azure :
     // const apiKey = 'b2aa888ad83f4e0ba5412abaf23139da';
 
-    // api key dari openai (coba-coba)
-    const apiKey = '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';
+    // use your own OpenAI API Key
+    // OPENAI_API_KEY = Your own OpenAI API Key
+    final apiKey =  dotenv.env['OPENAI_API_KEY'] ?? "";
 
     // header untuk dari azure :
     /*
@@ -66,7 +69,8 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     // header untuk dari openai (coba-coba)
     final headers = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $apiKey' // Updated for OpenAI's expected header format
+      'Authorization': 'Bearer $apiKey'
+      // Updated for OpenAI's expected header format
     };
 
     // tulis prompt nya disini [ untuk azure ]
@@ -81,18 +85,23 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
 
     // tulis prompt nya disini [ untuk openai, coba-coba ]
     final requestBody = json.encode({
-      "model": "gpt-3.5-turbo", // Make sure this is the correct model identifier
+      "model": "gpt-3.5-turbo",
+      // Make sure this is the correct model identifier
       "messages": [
-        {"role": "system", "content": "You are an expert Resume Analyzer. Provide a comprehensive review, feedback, and recommendation of this resume: $resumeText"},
+        {
+          "role": "system",
+          "content":
+              "You are an expert Resume Analyzer. Provide a compact feedback, and recommendation of this resume: $resumeText, maximum 300 words"
+        },
         {"role": "user", "content": ""}
       ],
-      "max_tokens": 300, // ini untuk membatasi panjang kalimat / output yang dikeluarin gpt (biar hemat juga credit yang terpakai tiap keluarin output)
+      "max_tokens": 325,
+      // ini untuk membatasi panjang kalimat / output yang dikeluarin gpt (biar hemat juga credit yang terpakai tiap keluarin output)
     });
 
     final response = await http.post(uri, headers: headers, body: requestBody);
 
     if (response.statusCode == 200) {
-
       final responseBody = json.decode(response.body);
       //return ini kalo misalnya azure openai :
       // return responseBody['choices'][0]['text'].trim();
@@ -100,13 +109,16 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
       // Assuming the response format for chat completions, adjust as necessary
       return responseBody['choices'][0]['message']['content'].trim();
     } else {
-      throw Exception('Failed to analyze resume with GPT-3.5 Turbo: ${response.body}');
+      throw Exception(
+          'Failed to analyze resume with GPT-3.5 Turbo: ${response.body}');
     }
   }
 
   // untuk convert from pdf to text lalu di analisa oleh gpt
   void _analyzeCV() async {
     if (_cvFile != null) {
+      // ini code kalo mau pake flask api pdf-to-text
+      /*
       var uri = Uri.parse('http://10.0.2.2:5000/upload_resume'); // Replace dengan Flask API URL (kalo perlu)
       var request = http.MultipartRequest('POST', uri);
 
@@ -116,10 +128,47 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
       ));
 
       var response = await request.send();
+       */
 
-      // Show loading indicator
-      Get.toNamed('/loadingPage');
+      // ini code kalo pdf-to-text pake library flutter
+      try {
+        // Read text from PDF file [ ini code kalo pdf-to-text pake library flutter ]
+        String resumeText = await ReadPdfText.getPDFtext(_cvFile!.path);
 
+        print('PDF to text result: $resumeText');
+
+        // Show loading indicator
+        Get.toNamed('/loadingPage');
+
+        // Now we await the GPT-3.5 analysis [ ini code kalo pdf-to-text pake library flutter ]
+        String textFeedbackFromGPT = await analyzeResumeWithGPT(resumeText);
+
+
+
+        // Navigate to the Cover Letter Feedback Page with the feedback
+        // setelah itu, kita oper text feedback nya ke Cover Letter Feedback Page
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) =>
+              CoverLetterFeedbackPage(feedbackText: textFeedbackFromGPT),
+        ));
+
+        // Hide loading indicator
+        Get.back();
+
+        // After loading, navigate to the feedback page
+        Get.to(
+            () => CoverLetterFeedbackPage(feedbackText: textFeedbackFromGPT));
+      } catch (e) {
+        // if there are error
+        print(e);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Failed to analyze CV with GPT, please try again')),
+        );
+      }
+
+      // dibawah ini code kalo pdf-to-text pake flask api python
+      /*
       if (response.statusCode == 200) {
         // Success - handle response
         var responseData = await response.stream.toBytes();
@@ -161,17 +210,20 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
             const SnackBar(content: Text('Failed to analyze CV with GPT, please try again')),
           );
         }
-
-      } else {
-        // Error - handle accordingly
-        // Hide loading indicator
-        // Get.back();
-        print('Failed to upload CV.');
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Failed to analyze CV, please try again')),
-        );
-      }
-    } else {
+*/
+    }
+    /*
+    else {
+      // Error - handle accordingly
+      // Hide loading indicator
+      // Get.back();
+      print('Failed to upload CV.');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to analyze CV, please try again')),
+      );
+    }
+     */
+    else {
       // Prompt the user to select a file first
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please select a file first')),
@@ -185,10 +237,10 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
     });
   }
 
-  // 2 = Cover Letter Page
+// 2 = Cover Letter Page
   int _selectedIndex = 2;
 
-  // for bottom navbar navigation
+// for bottom navbar navigation
   void _onNavBarTap(int index) {
     setState(() {
       _selectedIndex = index;
@@ -265,55 +317,60 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
           const SizedBox(height: 20),
           _cvFile != null
               ? Container(
-            padding: const EdgeInsets.all(40),
-            decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFFFF6C37), width: 2),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Column(
-              children: [
-                const Icon(
-                  Icons.file_upload,
-                  color: Color(0xFFFF6C37),
-                  size: 24,
-                ),
-                const SizedBox(height: 10,),
-                Text('Selected File: ${_cvFile!
-                    .path
-                    .split('/')
-                    .last}'),
-                TextButton(
-                  onPressed: _clearSelection,
-                  child: const Text('Cancel', style: TextStyle(color: Color(0xFFFF6C37)),),
-                ),
-              ],
-            ),
-          ) : Container(
-            padding: const EdgeInsets.all(40),
-            decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFFFF6C37), width: 2),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Column(
-              children: [
-                const Icon(
-                  Icons.file_upload,
-                  color: Color(0xFFFF6C37),
-                  size: 24,
-                ),
-                TextButton(
-                  onPressed: _pickCV,
-                  child: const Text(
-                    'Upload CV .pdf',
-                    style: TextStyle(
-                      color: Color(0xFFFF6C37),
-                      fontSize: 16,
-                    ),
+                  padding: const EdgeInsets.all(40),
+                  decoration: BoxDecoration(
+                    border:
+                        Border.all(color: const Color(0xFFFF6C37), width: 2),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                ),
-              ],
-            ),
-          ) /* ElevatedButton(
+                  child: Column(
+                    children: [
+                      const Icon(
+                        Icons.file_upload,
+                        color: Color(0xFFFF6C37),
+                        size: 24,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text('Selected File: ${_cvFile!.path.split('/').last}'),
+                      TextButton(
+                        onPressed: _clearSelection,
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(color: Color(0xFFFF6C37)),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : Container(
+                  padding: const EdgeInsets.all(40),
+                  decoration: BoxDecoration(
+                    border:
+                        Border.all(color: const Color(0xFFFF6C37), width: 2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    children: [
+                      const Icon(
+                        Icons.file_upload,
+                        color: Color(0xFFFF6C37),
+                        size: 24,
+                      ),
+                      TextButton(
+                        onPressed: _pickCV,
+                        child: const Text(
+                          'Upload CV .pdf',
+                          style: TextStyle(
+                            color: Color(0xFFFF6C37),
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ) /* ElevatedButton(
                   onPressed: _pickCV,
                   child: Text(
                     'Upload',
@@ -341,7 +398,8 @@ class _CoverLetterPageState extends State<CoverLetterPage> {
                 )
                 */
 
-          , const SizedBox(height: 20),
+          ,
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(

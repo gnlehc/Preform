@@ -4,10 +4,7 @@ Mobile AI Interview App & CV Analysis developed by team SolaGratia for Microsoft
 <p>
   <br>
    <img src="https://i.ibb.co/yNzj0g7/S-37634063-0.jpg" alt="preform-logo" width="500" style="margin-right: 20px;">
-  <img src="https://i.ibb.co/T09BZzL/S-37634065-0.jpg" alt="preform-logo" width="500" style="margin-right: 20px;">
   <br>
-  <img src="https://i.ibb.co/wsDbkLr/S-37634066-0.jpg" alt="preform-logo" width="500" style="margin-right: 20px;">
-  <img src="https://i.ibb.co/tpyj2Bq/S-37634068-0.jpg" alt="preform-logo" width="500" style="margin-right: 20px;">
   Meet Preform, the innovative AI-driven mobile app that's set to guarantee your performance, by transforming your job-seeking and interview preparation. 
   <br>
 </p>
